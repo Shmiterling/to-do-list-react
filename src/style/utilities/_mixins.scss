@@ -1,0 +1,71 @@
+@mixin primary-button {
+    border-radius: 5px;
+    color: $primary-font-color;
+    background-color: $color3;
+    font-family: $primary-font;
+    font-weight: 600;
+    padding: 15px 30px;
+    width: 150px;
+    border: none;
+    font-size: 1em;
+    transition: all 0.5s;
+}
+
+@mixin primary-button-hover {
+    background-color: $color2;
+}
+
+@mixin form-container {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    width: 400px;
+    padding: 40px;
+    background-color: $primary-background-color;
+    border-radius:90px;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+
+    h1 {
+        font-family: $primary-font;
+        font-weight: 700;
+        color:#fff;
+        margin:40px;
+    }
+    
+    form {
+        width: 100%;
+
+        input {
+            font-family: $primary-font;
+            font-size: 0.9em;
+            border-radius: 5px;
+            display: block;
+            width: 80%;
+            margin: 0 auto;
+            margin-bottom: 10px;
+            line-height: 30px;
+        }
+
+        input:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        @include primary-button;
+        margin: 40px auto;
+    }
+
+    button:hover {
+        @include primary-button-hover;
+    }
+}
+
+@mixin component-container {
+    width: 60%;
+    background-color: #e4e4e4;
+    margin:0 auto;
+    min-height: 93vh;
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+}

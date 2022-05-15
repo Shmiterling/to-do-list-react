@@ -1,0 +1,13 @@
+
+
+.LogIn {
+    display: flex;
+    flex-wrap: wrap;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+
+    .form-container {
+        @include form-container;
+    }
+}

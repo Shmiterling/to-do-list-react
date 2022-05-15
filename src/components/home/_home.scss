@@ -1,0 +1,6 @@
+.Home {
+    @include component-container;
+    h1 {
+        text-align: center;
+    }
+}

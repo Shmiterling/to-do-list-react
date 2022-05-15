@@ -1,0 +1,30 @@
+.SignUp {
+    display: flex;
+    flex-wrap: wrap;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+    
+    .error-container {
+        
+        border-bottom-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        padding: 30px;
+        background-color: $color1;
+        opacity: 0.9;
+        position: absolute;
+        top: 59px;
+        right: 20%;
+        text-align: center;
+        margin-bottom: 30px;
+
+        p {
+            color: $primary-font-color;
+            font-family: $primary-font;
+            font-size: 1em;
+        }
+    }
+    .form-container {
+        @include form-container;
+    }
+}

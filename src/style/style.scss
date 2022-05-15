@@ -1,0 +1,13 @@
+@import './utilities/variables';
+@import './utilities/mixins';
+
+
+@import './global/global';
+@import '../components/navbar/navbar';
+@import '../components/home/home';
+@import '../components/login/login';
+@import '../components/signup/signup';
+@import '../components/mytasks/mytasks';
+@import '../components/profile/profile';
+@import '../components/todayslist/todayslist';
+
