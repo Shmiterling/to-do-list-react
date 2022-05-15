@@ -131,7 +131,7 @@ export default function SignUp(): JSX.Element {
                     if (res.status === 201) {
                         setSuccess(true);
                         setTimeout(() => {
-                            navigate('/LogIn', {replace: true})
+                            navigate('to-do-list-react/LogIn', {replace: true})
                         }, 2000)
                     }
                 })

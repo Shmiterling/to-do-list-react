@@ -1,21 +1,18 @@
-import React, { MouseEvent, RefObject } from "react";
-
-import Navbar from "../navbar/Navbar";
+import { MouseEvent} from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LogIn():JSX.Element {
 
-    const _emailInput = React.createRef()
-
+    let navigate = useNavigate()
 
     const logInFunction = (e:MouseEvent) => {
         e.preventDefault();
         localStorage.setItem('loggedIn', 'ok');
-        window.location.href = '/Home';
+        navigate('to-do-list-react/Home', {replace: true})
     }
 
     return (
         <div className="outside-container">
-            {/* <Navbar /> */}
             <div className="LogIn">
                 <div className="form-container">
                     <h1>Log In</h1>

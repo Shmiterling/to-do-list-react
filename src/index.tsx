@@ -27,12 +27,12 @@ root.render(
     <BrowserRouter>
     <Navbar />
       <Routes>
-        <Route path="/Home" element={<Home />}></Route>
-        <Route path="/LogIn" element={<LogIn />}></Route>
-        <Route path="/SignUp" element={<SignUp />}></Route>
-        <Route path="/Profile" element={<Profile />}></Route>
-        <Route path="/MyTasks" element={<MyTasks />}></Route>
-        <Route path="/TodaysList" element={<TodaysList />}></Route>
+        <Route path="to-do-list-react/Home" element={<Home />}></Route>
+        <Route path="to-do-list-react/LogIn" element={<LogIn />}></Route>
+        <Route path="to-do-list-react/SignUp" element={<SignUp />}></Route>
+        <Route path="to-do-list-react/Profile" element={<Profile />}></Route>
+        <Route path="to-do-list-react/MyTasks" element={<MyTasks />}></Route>
+        <Route path="to-do-list-react/TodaysList" element={<TodaysList />}></Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
