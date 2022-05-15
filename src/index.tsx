@@ -27,7 +27,7 @@ root.render(
     <BrowserRouter>
     <Navbar />
       <Routes>
-        <Route path="to-do-list-react/Home" element={<Home />}></Route>
+        <Route path="to-do-list-react/" element={<Home />}></Route>
         <Route path="to-do-list-react/LogIn" element={<LogIn />}></Route>
         <Route path="to-do-list-react/SignUp" element={<SignUp />}></Route>
         <Route path="to-do-list-react/Profile" element={<Profile />}></Route>

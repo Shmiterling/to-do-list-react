@@ -14,13 +14,13 @@ export default function Navbar():JSX.Element {
 
     const logOut = () => {
         localStorage.setItem('loggedIn', 'not ok');
-        navigate('to-do-list-react/Home', {replace: true});
+        navigate('to-do-list-react/', {replace: true});
     }
 
     return (
         <div className="Navbar-outside-container">
             <div className='Navbar'>
-                <Link id="home" className="Link" to="/Home">Home</Link>
+                <Link id="home" className="Link" to="to-do-list-react/">Home</Link>
                 {loggedIn && <Link id="profile" className="Link" to="to-do-list-react/Profile">Profile</Link>}
                 {loggedIn && <Link id="profile" className="Link" to="to-do-list-react/MyTasks">My Tasks</Link>}
                 {loggedIn && <Link id="profile" className="Link" to="to-do-list-react/TodaysList">Today's List</Link>}

@@ -8,7 +8,7 @@ export default function LogIn():JSX.Element {
     const logInFunction = (e:MouseEvent) => {
         e.preventDefault();
         localStorage.setItem('loggedIn', 'ok');
-        navigate('to-do-list-react/Home', {replace: true})
+        navigate('to-do-list-react/', {replace: true})
     }
 
     return (
