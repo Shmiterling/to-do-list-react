@@ -1,14 +1,14 @@
-import { MouseEvent} from "react";
+import { MouseEvent } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function LogIn():JSX.Element {
+export default function LogIn(): JSX.Element {
 
-    let navigate = useNavigate()
+    const navigate = useNavigate();
 
-    const logInFunction = (e:MouseEvent) => {
+    const logInFunction = (e: MouseEvent) => {
         e.preventDefault();
         localStorage.setItem('loggedIn', 'ok');
-        navigate('to-do-list-react/', {replace: true})
+        navigate('/to-do-list-react', { replace: false });
     }
 
     return (
@@ -20,7 +20,7 @@ export default function LogIn():JSX.Element {
                         <input type="text" placeholder="E-mail" />
                         <input type="password" placeholder="Password" />
                     </form>
-                    <button type="submit" onClick={(e:MouseEvent) => {logInFunction(e)}}>Log In</button>
+                    <button type="submit" onClick={(e: MouseEvent) => { logInFunction(e) }}>Log In</button>
                 </div>
             </div>
         </div>

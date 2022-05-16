@@ -3,16 +3,17 @@ import { useEffect, useState } from 'react';
 
 export default function Navbar():JSX.Element {
 
-    let navigate = useNavigate();
-    const [loggedIn, setLoggedIn] = useState<boolean>();
+    const [loggedIn, setLoggedIn] = useState<boolean>(false);
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(localStorage.loggedIn === 'ok') {
             setLoggedIn(true);
         }
-    })
+    },[localStorage.loggedIn])
 
     const logOut = () => {
+        setLoggedIn(false);
         localStorage.setItem('loggedIn', 'not ok');
         navigate('to-do-list-react/', {replace: true});
     }
@@ -27,7 +28,7 @@ export default function Navbar():JSX.Element {
                 <div className='Right-side-container'>
                     {!loggedIn && <Link id="login" className="Link" to="to-do-list-react/LogIn">Log In</Link>}
                     {!loggedIn && <Link id="signup" className="Link" to="to-do-list-react/SignUp">Sign Up</Link>}
-                    {loggedIn && <Link id="logout" className="Link" to="to-do-list-react/Home" onClick={logOut}>Log Out</Link>}
+                    {loggedIn && <Link id="logout" className="Link" to="to-do-list-react/" onClick={logOut}>Log Out</Link>}
                 </div>
             </div>
         </div>
