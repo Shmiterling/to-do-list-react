@@ -6,11 +6,10 @@ import {
   Routes,
   Route
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import store from './store/store'
 
-import Navbar from './components/navbar/Navbar';
-import Home from './components/home/Home';
-import LogIn from './components/login/LogIn';
-import SignUp from './components/signup/SignUp';
+import Home from './components/landingpage/LandingPage';
 import Profile from './components/profile/Profile';
 import MyTasks from './components/mytasks/MyTasks';
 import TodaysList from './components/todayslist/TodaysList';
@@ -24,17 +23,16 @@ const root = ReactDOM.createRoot(
 
 root.render(
   <React.StrictMode>
-    <BrowserRouter>
-    <Navbar />
-      <Routes>
-        <Route path="to-do-list-react/" element={<Home />}></Route>
-        <Route path="to-do-list-react/LogIn" element={<LogIn />}></Route>
-        <Route path="to-do-list-react/SignUp" element={<SignUp />}></Route>
-        <Route path="to-do-list-react/Profile" element={<Profile />}></Route>
-        <Route path="to-do-list-react/MyTasks" element={<MyTasks />}></Route>
-        <Route path="to-do-list-react/TodaysList" element={<TodaysList />}></Route>
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="to-do-list-react/" element={<Home />}></Route>
+          <Route path="to-do-list-react/Profile" element={<Profile />}></Route>
+          <Route path="to-do-list-react/MyTasks" element={<MyTasks />}></Route>
+          <Route path="to-do-list-react/TodaysList" element={<TodaysList />}></Route>
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>
 );
 

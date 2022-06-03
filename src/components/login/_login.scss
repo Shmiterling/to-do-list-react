@@ -1,13 +1,74 @@
+@include form;
 
 
-.LogIn {
-    display: flex;
-    flex-wrap: wrap;
-    height: 80vh;
-    justify-content: center;
-    align-items: center;
+.login.outside-container{
+    top:0;
+    right: -100vw;
 
     .form-container {
-        @include form-container;
+
+        .inputs.email {
+            top:175px
+        }
+    
+        .inputs.password {
+            top:250px;
+        }
+        label.label {
+            top: -25px;
+            animation: moveToLabel 0.5s linear;
+        }
+
+        @keyframes moveToLabel {
+            from{top:13px}
+            to{top:-25px}
+        }
+
+        label.placeholder {
+            animation: moveToPlaceholder 0.5s linear;
+        }
+
+        @keyframes moveToPlaceholder {
+            from{top:-25px}
+            to{top:13px}
+        }
+    
+        .btn-container {
+            position: absolute;
+            bottom: 35px;
+            .btn {
+                font-size: 1.5em;
+                width:175px;
+                height: 60px;
+            }
+        }
     }
+}
+
+
+
+.login.outside-container.initial {
+    display: none;
+};
+
+.login.outside-container.visible {
+    top:0;
+    right: 0;
+    animation: show 0.5s linear;  
+}
+
+.login.outside-container.hidden {
+    top:0;
+    right:-100vw;
+    animation: hide 0.5s linear;
+}
+
+@keyframes show {
+    0% {right: -100vw;}
+    100%{right:0;}
+}
+
+@keyframes hide {
+    0%{right:0;visibility: visible;}
+    100% {right: -100vw;}
 }

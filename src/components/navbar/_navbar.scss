@@ -1,5 +1,5 @@
 .Navbar-outside-container {
-    background-color: $color3;
+    background-color: $yellow;
     width: 100%;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
     
@@ -16,15 +16,13 @@
             font-weight: 500;
             text-decoration: none;
             flex-shrink: 0;
-            color: $primary-font-color;
-            background-color: $color3;
+            color: $light-grey;
+            background-color: $yellow;
             padding: 20px 30px;
             transition: all 0.5s;
         }
     
-        .Link:hover {
-            @include primary-button-hover;
-        }
+
     
         .Right-side-container {
             display: flex;
