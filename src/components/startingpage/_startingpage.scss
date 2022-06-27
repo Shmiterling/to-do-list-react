@@ -1,0 +1,43 @@
+.StartingPage {
+    width:100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+    .global_container {
+        width: 258px;
+        height: 90px;
+        margin:0 auto;
+        display: flex;
+        .heading_container{
+            width:50%;
+            h1,h3 {
+                font-family: $primary_font_family;
+                color: $primary_font_color;
+                text-align: center;
+            }
+
+            h1 {
+                font-size: 24px;
+                font-weight: 400;
+                margin-bottom: 10px;
+            }
+
+            h3 {
+                font-size: 16px;
+                font-weight: 300;
+                span {
+                    color: $primary_blue;
+                    font-weight: 400;
+                }
+            }
+        }
+        .buttons_container {
+            width:50%;
+            text-align: center;
+            button {
+                @include button_settings;
+            }
+        }
+    }
+}

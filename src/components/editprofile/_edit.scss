@@ -1,11 +1,11 @@
-.Profile {
+.Edit {
     width:100vw;
     height: 100vh;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
 
-    .edit_icon {
+    .back_icon {
         position: absolute;
         height: 30px;
         color: $primary_blue;
@@ -31,33 +31,35 @@
         }
     }
 
-    h1 {
-        text-align: center;
-        font-family: $primary_font_family;
+    input {
+        font-family: $primary-font-family;
+        font-size: 14px;
         font-weight: 300;
-        font-size: 18px;
-        color: $primary_font_color;
-        margin-bottom: 10px;
+        width: 170px;
+        height: 25px;
+        border: 1px solid $secondary_grey;
+        border-radius: 2px;
+        margin:0 auto;
+        margin-bottom: 20px;
+        border-radius: 2px
     }
 
-    button {
-        display: flex;
-        border:none;
-        background-color: transparent;
-        text-align: center;
-        font-family: $primary_font_family;
-        font-size: 18px;
-        font-weight: 300;
+    input:focus {
+        outline: none;
+    }
+    .change_password_button {
+        @include button_settings;
+        margin: 0 auto;
         color: $primary_font_color;
-        padding: 0;
-        align-items: center;
-        margin:0 auto;
-        margin-top:150px;
+        background-color: transparent;
+        width: 120px;
+        font-size: 12px;
+        margin-bottom: 10px;
+        border: 1px solid #adadad;
+    }
 
-        .log_out_icon {
-            color:$primary_blue;
-            margin-right: 5px;
-            height: 30px;
-        }
+    .submit_button {
+        @include button_settings;
+        margin: 0 auto;
     }
 }

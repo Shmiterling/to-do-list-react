@@ -1,13 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,500;1,700;1,900&display=swap');
+$primary_blue: #6889FF;
+$secondary_blue: #4C5096;
+$secondary_grey: #ADADAD;
+$secondary_light_grey: #EBEBEB;
+$primary_font_color: #4D4D4D;
+$background_color:#F8F9FF;
+$green_color:#20A173;
 
-$light-grey:#e9e9e9;
-$grey:#6F6F6F;
-$dark-grey: #383838;
-
-$orange:#FF9473;
-$blue:#5AA6FF;
-$yellow:#FFD74A;
-
-$primary-background-color: #869b92;
-
-$primary-font: 'Roboto',sans-serif;
+$primary_font_family: 'Roboto','sans-serif';
+$navbar_height:50px; //Important control variable. Using it as margin-bottom paramentr. Because of this content container is scrolling when overflow

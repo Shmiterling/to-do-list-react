@@ -1,35 +1,40 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { faCircleCheck, faFileCircleCheck, faUser } from "@fortawesome/free-solid-svg-icons"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { useNavigate } from "react-router-dom"
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import store from "../../store/store";
 
-export default function Navbar():JSX.Element {
+export default function Navbar(): JSX.Element {
 
-    const [loggedIn, setLoggedIn] = useState<boolean>(false);
+    const state = useSelector(() => store.getState().navbar.value);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-    useEffect(() => {
-        if(localStorage.loggedIn === 'ok') {
-            setLoggedIn(true);
-        }
-    },[localStorage.loggedIn])
 
-    const logOut = () => {
-        setLoggedIn(false);
-        localStorage.setItem('loggedIn', 'not ok');
-        navigate('to-do-list-react/', {replace: true});
+    const daily_list_nav = () => {
+        navigate('./')
     }
 
+    const profile_nav = () => {
+        navigate('./profile')
+    }
+
+    const tasks_library_nav = () => {
+        navigate('./tasks_library')
+    }
+
+
     return (
-        <div className="Navbar-outside-container">
-            <div className='Navbar'>
-                <Link id="home" className="Link" to="to-do-list-react/">Home</Link>
-                {loggedIn && <Link id="profile" className="Link" to="to-do-list-react/Profile">Profile</Link>}
-                {loggedIn && <Link id="profile" className="Link" to="to-do-list-react/MyTasks">My Tasks</Link>}
-                {loggedIn && <Link id="profile" className="Link" to="to-do-list-react/TodaysList">Today's List</Link>}
-                <div className='Right-side-container'>
-                    {!loggedIn && <Link id="login" className="Link" to="to-do-list-react/LogIn">Log In</Link>}
-                    {!loggedIn && <Link id="signup" className="Link" to="to-do-list-react/SignUp">Sign Up</Link>}
-                    {loggedIn && <Link id="logout" className="Link" to="to-do-list-react/" onClick={logOut}>Log Out</Link>}
-                </div>
+        <div className="Navbar">
+            <div className={"icon_container daily_list" + (state === 'daily' ? ' active' : '')} >
+                <FontAwesomeIcon className="icon" onClick={() => daily_list_nav()} icon={faFileCircleCheck}></FontAwesomeIcon>
+            </div>
+            <div className={"icon_container profile" + (state === 'profile' ? ' active' : '')} >
+                <FontAwesomeIcon className="icon" onClick={() => profile_nav()} icon={faUser}></FontAwesomeIcon>
+            </div>
+            <div className={"icon_container tasks_library" + (state === 'library' ? ' active' : '')} >
+                <FontAwesomeIcon className="icon" onClick={() => tasks_library_nav()} icon={faCircleCheck}></FontAwesomeIcon>
             </div>
         </div>
     )

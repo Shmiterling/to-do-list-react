@@ -1,0 +1,163 @@
+.Task {
+    font-family: $primary_font_family;
+    color: $primary_font_color;
+    font-weight: 300;
+    margin-bottom: 10px;
+    .title_container {
+        font-size: 16px;
+        height: 50px;
+        background-color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 2px 5px 0;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        .chevron_container {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            display: flex;
+            justify-content: center;
+            margin-left: 10px;
+            cursor: pointer;
+
+            svg {
+                height: 15px;
+            }
+        }
+
+        p {
+            width: 150px; //16 charecters restriction
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin-left: 20px;
+        }
+
+        .complete_circle {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            right: 10px;
+            border: $primary_font_color solid 1px;
+            border-radius: 100%;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .icon {
+                height: 20px;
+                width: 20px;
+                color: $green_color;
+                display: none;
+            }
+        }
+
+        .options_container {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .complete_circle.completed {
+            .icon {
+                display: inline-block;
+            }
+        }
+    }
+    .description_container {
+        background-color: $background_color;
+        min-height: 50px;
+        max-height: 200px;
+        padding: 20px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 2px 5px 0;
+        border-radius: 5px;
+
+        p {
+            font-size: 12px;
+        }
+    }
+
+    .background_container {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        top:0;
+        left:0;
+        z-index: 20;
+    }
+
+    .options_menu {
+        width:170px;
+        height: 85px;
+        background-color: $background_color;
+        position: absolute;
+        top:10px;
+        right: 10px;
+        z-index: 25;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 2px 5px 0;
+        border-radius: 5px;
+
+        span {
+            display: flex;
+            height: 15px;
+            margin: 0 10px;
+            margin-top: 10px;
+            align-items: center;
+            position: relative;
+            font-family: $primary-font-family;
+            font-size: 12px;
+
+            svg {
+                position: absolute;
+                right:0;
+                height: 15px;
+                width: 15px;
+
+            }
+        }
+    }
+}
+
+.Task.closed {
+    .description_container {
+        display: none;
+    }
+}
+
+.Task.opened {
+    .chevron_container {
+        svg {
+            transform: rotate(180deg);
+        }
+    }
+
+    .description_container {
+        display: block;
+    }
+}
+
+.Task.list {
+    .options_container {
+        display: none;
+    }
+}
+
+.Task.library {
+    .complete_circle {
+        display: none;
+    }
+}
+
+.Task.library.today {
+    .title_container {
+        border: 1px solid $primary_blue;
+    }
+}

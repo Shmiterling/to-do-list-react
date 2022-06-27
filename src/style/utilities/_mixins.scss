@@ -1,79 +1,21 @@
-@mixin form {
-    .outside-container {
-        width: 100vw;
-        height: 100vh;
-        position: absolute;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+@mixin button_settings {
+    width:120px;
+    height: 40px;
+    font-family: $primary_font_family;
+    color: #fff;
+    font-weight: 400;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+    background-color: $primary_blue;
+    margin-bottom: 10px;
+    cursor: pointer;
+} 
 
-        .form-container {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            width: 600px;
-            height: 500px;
-            z-index: 10;
-
-            svg {
-                right: 40px;
-                top: 30px;
-                position: absolute;
-                font-size: 2.5em;
-                color: $grey;
-                transition: all 0.5s;
-            }
-
-            svg:hover {
-                color: $blue;
-            }
-
-            .inputs {
-                position: absolute;
-                margin-bottom: 40px;
-
-                input {
-                    width: 370px;
-                    height: 50px;
-                    border: rgba($color: $grey, $alpha: 0.5) 1px solid;
-                    border-radius: 10px;
-                    outline: none;
-                    font-family: $primary-font;
-                    font-size: 18px;
-                    font-weight: 300;
-                }
-
-                input:focus {
-                    border: rgba($color: $blue, $alpha: 0.5) 2px solid;
-                }
-            }
-
-            label {
-                position: absolute;
-                font-size: 18px;
-                left: 10px;
-                font-family: $primary-font;
-                font-weight: 300;
-                color: $grey;
-                top: 13px;
-                cursor: text;
-            }
-        }
-
-        .form-container::before {
-            content: "";
-            position: absolute;
-            background-color: rgba($color: $light-grey, $alpha: 0.4);
-            width: inherit;
-            height: inherit;
-            border-radius: 50px;
-            z-index: -10;
-            backdrop-filter: blur(10px);
-            box-shadow: rgba($color: #000000, $alpha: 0.25) 4px 4px 4px 0;
-        }
-    }
-
+@mixin font_settings {
+    font-family: $primary-font-family;
+    color:$primary_font_color;
+    font-size: 16px;
+    font-weight: 300;
 }
 

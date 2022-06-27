@@ -8,14 +8,11 @@ import {
 } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './store/store'
-
-import Home from './components/landingpage/LandingPage';
-import Profile from './components/profile/Profile';
-import MyTasks from './components/mytasks/MyTasks';
-import TodaysList from './components/todayslist/TodaysList';
-
-import './style/index.css';
 import './style/style.scss';
+import App from './components/app/App';
+import StartingPage from './components/startingpage/StartingPage';
+import LogIn from './components/login/LogIn';
+import CreateAccount from './components/createaccount/CreateAccount';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -26,10 +23,10 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="to-do-list-react/" element={<Home />}></Route>
-          <Route path="to-do-list-react/Profile" element={<Profile />}></Route>
-          <Route path="to-do-list-react/MyTasks" element={<MyTasks />}></Route>
-          <Route path="to-do-list-react/TodaysList" element={<TodaysList />}></Route>
+          <Route path='/to-do-list-react/' element={<StartingPage />}></Route>
+          <Route path='/to-do-list-react/app/*' element={<App />}></Route>
+          <Route path='/to-do-list-react/log_in' element={<LogIn />}></Route>
+          <Route path='/to-do-list-react/create_account' element={<CreateAccount />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>

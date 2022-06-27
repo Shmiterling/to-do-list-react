@@ -1,14 +1,18 @@
-@import './utilities/variables';
-@import './utilities/mixins';
-
-
 @import './global/global';
-@import '../components/navbar/navbar';
-@import '../components/landingpage/landingpage';
-@import '../components/login/login';
-@import '../components/signup/signup';
-@import '../components/mytasks/mytasks';
-@import '../components/profile/profile';
-@import '../components/todayslist/todayslist';
-@import '../components/elements/buttons/buttons';
+@import './utilities/mixins';
+@import './utilities/variables';
+@import './utilities/fonts';
 
+@import '../components/app/app';
+@import '../components/navbar/navbar';
+@import '../components/dailylist/dailylist';
+@import '../components/task/task';
+@import '../components/startingpage/startingpage';
+@import '../components/createaccount/createaccount';
+@import '../components/login/login';
+@import '../components/profile/profile';
+@import '../components/editprofile/edit';
+@import '../components/changepassword/changepassword';
+@import '../components/taskslibrary/taskslibrary';
+@import '../components/createtask/createTask';
+@import '../components/editTask/editTask';

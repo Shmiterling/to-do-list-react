@@ -1,40 +1,31 @@
-.Navbar-outside-container {
-    background-color: $yellow;
-    width: 100%;
-    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
-    
-    
-    .Navbar {
-        display: flex;
-        margin: 0 auto;
-        width:60%;
-        background-color: inherit;
-        
-        .Link {
-            display: inline-block;
-            font-family: $primary-font;
-            font-weight: 500;
-            text-decoration: none;
-            flex-shrink: 0;
-            color: $light-grey;
-            background-color: $yellow;
-            padding: 20px 30px;
-            transition: all 0.5s;
-        }
-    
+.Navbar {
+    height: $navbar_height;
+    width:100%;
+    background-color: $primary_blue;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
 
-    
-        .Right-side-container {
-            display: flex;
-            width: 100%;
-            justify-content: right;
+    .icon_container {
+        text-align: center;
+        display: inline-block;
+        width:30px;
+        height: 30px;
+        flex-basis: 30%;
+
+        .icon {
+            height: 30px;
+            color: $secondary_blue;
+            cursor: pointer;
         }
-    
+    }
+
+    .icon_container.active {
+        .icon {
+            color:#fff
+        }
     }
 }
-
-
-
-    
-
-

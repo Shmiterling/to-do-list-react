@@ -1,0 +1,62 @@
+.TasksLibrary {
+    margin-bottom: $navbar_height;
+    .tasks_list {
+        width: 270px;
+        margin: 0 auto;
+        margin-top: 70px;
+    }
+
+    .safe_container {
+        width: 100vw;
+        height: 100px;
+    }
+
+    .add_icon {
+        color:$primary_blue;
+        position: absolute;
+        top:25px;
+        right:25px;
+        height: 30px;
+        width:30px;
+    }
+    .archive_icon {
+        color:$primary_blue;
+        position: absolute;
+        top:25px;
+        left:25px;
+        height: 30px;
+        width:30px;
+    }
+
+    .empty_daily {
+        text-align: center;
+        margin-top: 200px;
+        font-family: $primary_font_family;
+        font-weight: 300;
+        font-size:16px;
+        color: $primary_font_color;
+
+        h1 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+            padding: 0 10px;
+        }
+
+        span {
+            font-weight: 400;
+            color:$primary_blue;
+        }
+
+        .add_task {
+            width:60px;
+            height: 60px;
+            color:$primary_blue;
+            margin-top: 10px;
+        }
+    }
+}

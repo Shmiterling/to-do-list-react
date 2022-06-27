@@ -1,0 +1,34 @@
+.DailyList {
+    margin-bottom: $navbar_height;
+    .tasks_list {
+        width: 270px;
+        margin: 0 auto;
+        margin-top: 70px;
+    }
+
+    .empty_task_list {
+        text-align: center;
+        margin-top: 200px;
+        font-family: $primary_font_family;
+        font-weight: 300;
+        font-size:16px;
+        color: $primary_font_color;
+
+        p {
+            margin-bottom: 10px;
+            padding: 0 10px;
+        }
+
+        span {
+            font-weight: 400;
+            color:$primary_blue;
+        }
+
+        .add_task {
+            width:60px;
+            height: 60px;
+            color:$primary_blue;
+            margin-top: 10px;
+        }
+    }
+}

@@ -1,72 +1,40 @@
-import React from "react";
-import { MouseEvent, useState } from "react";
-import PrimaryButton from '../elements/buttons/PrimaryButton';
+import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { useSelector } from "react-redux";
-import { setLogInFormHidden, setLogInFormInitial } from "../../store/_logInForm";
-import { useDispatch } from "react-redux";
-import store from "../../store/store";
-
-
+import { useNavigate } from "react-router-dom";
+import { createRef, useState } from "react";
 
 export default function LogIn(): JSX.Element {
-    
-    const dispatch = useDispatch();
-    const formState = useSelector((state) => store.getState().logInForm.value)
 
-    const [emailFocus, setEmailFocus] = useState<boolean | null>(null)
-    const [passFocus, setPassFocus] = useState<boolean | null>(null)
-    
-    const _emailInput = React.useRef<HTMLInputElement>(null)
-    const _passInput = React.useRef<HTMLInputElement>(null)
+    const navigate = useNavigate()
 
+    const [resError, setResError] = useState<boolean>(false)
 
-    const logInFunction = (e: MouseEvent) => {
-        e.preventDefault();
-        console.log('ok')
+    //REFS
+    const _email = createRef<HTMLInputElement>();
+    const _password = createRef<HTMLInputElement>();
+
+    const backward = () => {
+        navigate('/to-do-list-react/')
     }
 
-    const fieldClear = () => {
-        if (_emailInput.current !== null) {
-            _emailInput.current.value = ''
-        }
-        if (_passInput.current !== null) {
-            _passInput.current.value = ''
-        }
-    }
+    const logIn = (e: React.MouseEvent<HTMLElement>) => {
+        e.preventDefault()
 
-    let emailPlaceholderStatus:string;
-    if (emailFocus === true || _emailInput.current?.value !== '') {
-        emailPlaceholderStatus = 'label'
-    } else if (emailFocus === null){
-        emailPlaceholderStatus = ''
-    }  else {
-        emailPlaceholderStatus = 'placeholder'
-    }
-
-    let passPlaceholderStatus:string;
-    if (passFocus === true || _passInput.current?.value !== '') {
-        passPlaceholderStatus = 'label'
-    } else if (passFocus === null){
-        passPlaceholderStatus = ''
-    }  else {
-        passPlaceholderStatus = 'placeholder'
+        navigate('/to-do-list-react/app')
     }
 
     return (
-        <div className={'login outside-container' + formState}>
-            <form className="form-container">
-                <FontAwesomeIcon onClick={() => {dispatch(setLogInFormHidden()); fieldClear(); setTimeout(() => {dispatch(setLogInFormInitial())},1000)}} icon={faArrowRight}></FontAwesomeIcon>
-                <div className="inputs email">
-                    <label htmlFor='email' className={emailPlaceholderStatus}>E-Mail</label>
-                    <input id='email' ref={_emailInput} type="text" onFocus={() => {setEmailFocus(true)}} onBlur={() => {setEmailFocus(false)}}></input>
-                </div>
-                <div className="inputs password">
-                    <label htmlFor='pass' className={passPlaceholderStatus}>Password</label>
-                    <input id='pass' ref={_passInput} onFocus={() => {setPassFocus(true)}} onBlur={() => {setPassFocus(false)}} type="password"></input>
-                </div>
-                <PrimaryButton text='Log In' color='orange' function={logInFunction}/>
+        <div className="LogIn">
+            <FontAwesomeIcon icon={faCircleArrowRight} className="back" onClick={() => backward()}></FontAwesomeIcon>
+            <form>
+                <label htmlFor="email">E-Mail</label>
+                <input ref={_email} id="email" type="text" />
+
+                <label htmlFor="password">Password</label>
+                <input ref={_password} type="password" />
+                {resError && <p>E-mail or password is wrong</p>}
+
+                <button type="submit" onClick={(e) => logIn(e)}>Log In</button>
             </form>
         </div>
     )
