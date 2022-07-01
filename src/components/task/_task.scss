@@ -95,8 +95,11 @@
     }
 
     .options_menu {
-        width:170px;
-        height: 85px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        width:230px;
+        height: 125px;
         background-color: $background_color;
         position: absolute;
         top:10px;
@@ -104,22 +107,24 @@
         z-index: 25;
         box-shadow: rgba(0, 0, 0, 0.25) 0 2px 5px 0;
         border-radius: 5px;
+        padding: 10px 0;
+        
 
         span {
             display: flex;
             height: 15px;
-            margin: 0 10px;
-            margin-top: 10px;
+            margin: 0 15px;
+            flex-basis: 100%;
             align-items: center;
             position: relative;
             font-family: $primary-font-family;
-            font-size: 12px;
+            font-size: 16px;
 
             svg {
                 position: absolute;
                 right:0;
-                height: 15px;
-                width: 15px;
+                height: 25px;
+                width: 25px;
 
             }
         }

@@ -18,7 +18,7 @@ export interface TaskList {
 export default function DailyList(): JSX.Element {
 
     const [data, setData] = useState<TaskList[]>([]);
-    const [isEmpty, setIsEmpty] = useState<boolean>(true);
+    const [isEmpty, setIsEmpty] = useState<boolean>(false);
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -63,11 +63,11 @@ export default function DailyList(): JSX.Element {
                     return <Task key={task.id} id={task.id} title={task.title} description={task.description} completed={task.completed} renderedIn='list' />
                 })}
             </div>}
-            <div className="empty_task_list">
+            {isEmpty && <div className="empty_task_list">
                 <p>There is no tasks added from your <span>Task Library</span> to the <span>Daily List</span>.</p>
                 <p>Choose one or few of them!</p>
                 <FontAwesomeIcon onClick={() => toLibrary()} icon={faCirclePlus} className='add_task'></FontAwesomeIcon>
-            </div>
+            </div>}
         </div>
     )
 }
