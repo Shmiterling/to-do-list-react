@@ -1,4 +1,4 @@
-import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate } from "react-router-dom";
 import { createRef, useState } from "react";
@@ -25,7 +25,7 @@ export default function LogIn(): JSX.Element {
 
     return (
         <div className="LogIn">
-            <FontAwesomeIcon icon={faCircleArrowRight} className="back" onClick={() => backward()}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faCircleArrowLeft} className="back" onClick={() => backward()}></FontAwesomeIcon>
             <form>
                 <label htmlFor="email">E-Mail</label>
                 <input ref={_email} id="email" type="text" />

@@ -7,7 +7,7 @@
         position: absolute;
         height: 30px;
         color: $primary_blue;
-        right: 25px;
+        left: 25px;
         top: 25px;
         cursor: pointer;
     }
@@ -47,7 +47,7 @@
             text-align: center;
             flex-basis: 100%;
             font-family: $primary-font-family;
-            font-size: 10px;
+            font-size: 12px;
             font-weight: 400;
             color:$primary-font-color;
         }

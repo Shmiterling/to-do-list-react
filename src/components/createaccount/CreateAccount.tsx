@@ -1,4 +1,4 @@
-import { faCheck, faCircleArrowRight, faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faCircleArrowLeft, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { createRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -144,7 +144,7 @@ export default function CreateAccount(): JSX.Element {
                     {notEmail && <p>Please provide an E-mail address</p>}
                 </div>
             </div>}
-            <FontAwesomeIcon icon={faCircleArrowRight} className="back" onClick={() => backward()}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faCircleArrowLeft} className="back" onClick={() => backward()}></FontAwesomeIcon>
             <form>
                 <label htmlFor="username">Username</label>
                 <input ref={_username} id="username" type="text" />

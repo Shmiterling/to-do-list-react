@@ -1,6 +1,6 @@
 import React, { createRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 export default function CreateTask(): JSX.Element {
@@ -21,7 +21,7 @@ export default function CreateTask(): JSX.Element {
 
     return (
         <div className="CreateTask">
-            <FontAwesomeIcon icon={faCircleArrowRight} className="back" onClick={() => backward()}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faCircleArrowLeft} className="back" onClick={() => backward()}></FontAwesomeIcon>
             <form>
                 <label htmlFor="task_name">Task Name <span className="add_info">maximum 20 characters</span></label>
                 <input ref={_taskName} id="task_name" type="text" />

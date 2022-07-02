@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowCircleRight, faUser, faXmark, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faXmark, faCheck, faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { createRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -118,7 +118,7 @@ export default function ChangePassword(): JSX.Element {
                     {confirmPassEmpty && <p>Confirm new password field is required</p>}
                 </div>
             </div>}
-            <FontAwesomeIcon icon={faArrowCircleRight} className="back_icon" onClick={() => backward()}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faArrowCircleLeft} className="back_icon" onClick={() => backward()}></FontAwesomeIcon>
             <div className="picture_container">
                 <FontAwesomeIcon className="user" icon={faUser}></FontAwesomeIcon>
             </div>

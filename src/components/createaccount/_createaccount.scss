@@ -59,7 +59,7 @@
         position: absolute;
         height: 30px;
         color: $primary_blue;
-        right: 25px;
+        left: 25px;
         top: 25px;
         cursor: pointer;
     }
@@ -71,7 +71,8 @@
         top: 0;
 
         .error_field {
-            width: 220px;
+            min-width: 40%;
+            max-width: 60%;
             height: 250px;
             background-color: $secondary_light_grey;
             box-shadow: rgba($color: black, $alpha: 0.25) 0 2px 4px 0;
@@ -86,14 +87,14 @@
             font-weight: 300;
 
             h1 {
-                font-size:14px;
+                font-size:16px;
                 padding-top:25px;
-                margin-bottom: 10px;
+                margin-bottom: 20px;
             }
 
             p {
-                font-size: 10px;
-                margin-bottom: 8px;
+                font-size: 12px;
+                margin-bottom: 10px;
             }
 
             .x_mark {
@@ -101,8 +102,8 @@
                 right: 10px;
                 top: 10px;
                 cursor: pointer;
-                height: 15px;
-                width: 15px;
+                height: 25px;
+                width: 25px;
             }
         }
     }

@@ -1,6 +1,6 @@
 import { Data } from "../profile/Profile";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowCircleRight,faUser } from "@fortawesome/free-solid-svg-icons";
+import { faArrowCircleLeft,faUser } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { createRef } from "react";
 
@@ -37,7 +37,7 @@ export default function Edit(): JSX.Element {
 
     return (
         <div className="Edit">
-            <FontAwesomeIcon icon={faArrowCircleRight} className="back_icon" onClick={() => backward()}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faArrowCircleLeft} className="back_icon" onClick={() => backward()}></FontAwesomeIcon>
             <div className="picture_container">
                 <FontAwesomeIcon className="user" icon={faUser}></FontAwesomeIcon>
             </div>
