@@ -1,5 +1,6 @@
 import { faCheck, faCircleArrowLeft, faXmark } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import React, { createRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -99,8 +100,31 @@ export default function CreateAccount(): JSX.Element {
         }
 
         if (flag === false) {
-            console.log('success')
-            setSuccess(true)
+            let axiosConfig = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                }
+            };
+
+            let data = {
+                username: username,
+                email: email,
+                password: password,
+                today_amount: "3",
+                randomize_today_tasks: false
+            };
+
+            axios.post('https://todo.coldwinternight.ru/api/users',
+                data,
+                axiosConfig)
+                .then((res) => {
+                    console.log(res)
+                    setSuccess(true)
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
         } else {
             setErrorFlag(true);
         }
