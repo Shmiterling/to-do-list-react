@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { createRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -48,7 +48,7 @@ export default function EditTask(props: EditTask): JSX.Element {
 
     return (
         <div className="EditTask">
-            <FontAwesomeIcon icon={faCircleArrowRight} className="back" onClick={() => backward()}></FontAwesomeIcon>
+            <FontAwesomeIcon icon={faCircleArrowLeft} className="back" onClick={() => backward()}></FontAwesomeIcon>
             <form>
                 <label htmlFor="task_name">Task Name <span className="add_info">maximum 20 characters</span></label>
                 <input ref={_taskName} onChange={() => taskNameChangeHandle()}id="task_name" type="text" value={taskName}/>
