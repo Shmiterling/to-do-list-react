@@ -5,6 +5,7 @@ import Task from "../task/Task";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { changeToDaily } from "../../store/navbarSlice";
+import axios from "axios";
 
 
 export interface TaskList {
@@ -26,31 +27,52 @@ export default function DailyList(): JSX.Element {
     useEffect(() => {
         dispatch(changeToDaily());
 
-        let newData = [
-            {
-                id: '2',
-                title: 'Wash the car',
-                description: `My car is so dirty and i nither my wife can't carry it anymore`,
-                completed: false,
-                today: true
-            },
-            {
-                id: '3',
-                title: 'Get the post',
-                description: 'I need to do it before i die',
-                completed: false,
-                today: true
-            },
-            {
-                id: '5',
-                title: `Don't kill the cat`,
-                description: `I hope you'll not be so lucky, little bustard`,
-                completed: false,
-                today: true
-            }
-        ]
-        setData(newData);
+        // let newData = [
+        //     {
+        //         id: '2',
+        //         title: 'Wash the car',
+        //         description: `My car is so dirty and i nither my wife can't carry it anymore`,
+        //         completed: false,
+        //         today: true
+        //     },
+        //     {
+        //         id: '3',
+        //         title: 'Get the post',
+        //         description: 'I need to do it before i die',
+        //         completed: false,
+        //         today: true
+        //     },
+        //     {
+        //         id: '5',
+        //         title: `Don't kill the cat`,
+        //         description: `I hope you'll not be so lucky, little bustard`,
+        //         completed: false,
+        //         today: true
+        //     }
+        // ]
+        // setData(newData);
+        getData()
     }, [])
+
+    const getData = () => {
+        let config = {
+            method:'GET',
+            url: 'https://todo.coldwinternight.ru/api/tasks?userid=' + localStorage.user_id,
+            headers: {
+                'Authorization': localStorage.jwt,
+            },
+        };
+
+        axios(config)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            }) 
+
+
+    }
 
     const toLibrary = () => {
         navigate('./tasks_library')

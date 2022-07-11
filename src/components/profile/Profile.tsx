@@ -1,5 +1,6 @@
 import { faArrowRightFromBracket, faPenToSquare, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import axios from "axios";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -17,8 +18,27 @@ export default function Profile(): JSX.Element {
     const dispatch = useDispatch();
 
     useEffect(() => {
+        getData()
         dispatch(changeToProfile())
     },[])
+
+    const getData = () => {
+        let config = {
+            method: 'get',
+            url: 'https://todo.coldwinternight.ru/api/users/' + localStorage.user_id,
+            headers: {
+                'Authorization': localStorage.jwt
+            },
+        }
+
+        axios(config)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
 
     const data:Data = {
         id: '1',
@@ -31,7 +51,9 @@ export default function Profile(): JSX.Element {
     };
 
     const logOut = () => {
-        navigate('/to-do-list-react')
+        localStorage.removeItem('user_id');
+        localStorage.removeItem('jwt');
+        navigate('/to-do-list-react');
     };
 
     return (
