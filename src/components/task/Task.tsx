@@ -2,6 +2,7 @@ import { faBan, faCheck, faChevronCircleDown, faChevronDown, faEllipsisVertical,
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from 'react';
 import EditTask from "../editTask/EditTask";
+import axios from "axios";
 
 interface TaskProps {
     id: string,
@@ -19,7 +20,7 @@ export default function Task(props: TaskProps): JSX.Element {
     const [isEmpty, setIsEmpty] = useState<boolean>(false);
     const [isToday, setIsToday] = useState<boolean>(false);
     const [optionsVisible, setOptionsVisible] = useState<boolean>(false);
-    const [edit,setEdit] = useState<boolean>(false);
+    const [edit, setEdit] = useState<boolean>(false);
 
     useEffect(() => {
         if (props.completed === true) {
@@ -46,6 +47,21 @@ export default function Task(props: TaskProps): JSX.Element {
     }
 
     const completeTask = () => {
+        let config = {
+            method: 'PATCH',
+            url: 'https://todo.coldwinternight.ru/api/tasks/' + props.id + '/reverseStatus',
+            headers: {
+                'Authorization': localStorage.jwt,
+            }
+        };
+
+        axios(config)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
         if (isCompleted === false) {
             setIsCompleted(true)
         } else {
@@ -57,21 +73,21 @@ export default function Task(props: TaskProps): JSX.Element {
         setOptionsVisible(!optionsVisible)
     }
 
-    const addToDailyList = (id:string) => {
-        console.log(id)
+    const addToDailyList = (id: string) => {
+
     }
 
-    const editTask = (id:string, title:string, description:string, completed:boolean, today?:boolean) => {
+    const editTask = (id: string, title: string, description: string, completed: boolean, today?: boolean) => {
         setEdit(!edit);
         setOptionsVisible(!optionsVisible);
     }
 
-    const deleteTask = (id:string) => {
+    const deleteTask = (id: string) => {
         setOptionsVisible(false);
         console.log(id)
     }
 
-    const removeFromDailyList = (id:string) => {
+    const removeFromDailyList = (id: string) => {
         setOptionsVisible(false);
         console.log(id)
     }
@@ -94,17 +110,17 @@ export default function Task(props: TaskProps): JSX.Element {
                 </div>
 
                 {optionsVisible && <div className="options_menu">
-                    {!props.today && <span onClick={() => addToDailyList(props.id)}>Add to Daily List<FontAwesomeIcon icon={faFileCircleCheck}/></span>}
-                    {props.today && <span onClick={() => removeFromDailyList(props.id)}>Remove from Daily List<FontAwesomeIcon icon={faBan}/></span>}
-                    <span onClick={() => editTask(props.id, props.title, props.description, props.completed, props.today)}>Edit Task<FontAwesomeIcon icon={faPenToSquare}/></span>
-                    <span onClick={() => deleteTask(props.id)}>Delete Task<FontAwesomeIcon icon={faTrash}/></span>
+                    {!props.today && <span onClick={() => addToDailyList(props.id)}>Add to Daily List<FontAwesomeIcon icon={faFileCircleCheck} /></span>}
+                    {props.today && <span onClick={() => removeFromDailyList(props.id)}>Remove from Daily List<FontAwesomeIcon icon={faBan} /></span>}
+                    <span onClick={() => editTask(props.id, props.title, props.description, props.completed, props.today)}>Edit Task<FontAwesomeIcon icon={faPenToSquare} /></span>
+                    <span onClick={() => deleteTask(props.id)}>Delete Task<FontAwesomeIcon icon={faTrash} /></span>
                 </div>}
             </div>
             {!isEmpty && <div className="description_container visible">
                 <p>{props.description}</p>
             </div>}
 
-            {edit && <EditTask id={props.id} title={props.title} description={props.description} setEdit={setEdit}/>}
+            {edit && <EditTask id={props.id} title={props.title} description={props.description} setEdit={setEdit} />}
         </div>
     )
 }

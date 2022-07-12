@@ -1,19 +1,21 @@
 import { faArrowRightFromBracket, faPenToSquare, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { changeToProfile } from "../../store/navbarSlice";
 
 export type Data = {
-    id: string,
-    username: string,
-    email: string
+    id?: string,
+    username?: string,
+    email?: string
 };
 
 export default function Profile(): JSX.Element {
 
+
+    const [data,setData] = useState<Data>({})
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -33,18 +35,12 @@ export default function Profile(): JSX.Element {
 
         axios(config)
             .then(res => {
-                console.log(res)
+                setData(res.data)
             })
             .catch(err => {
                 console.log(err)
             })
     }
-
-    const data:Data = {
-        id: '1',
-        username: 'Marcus',
-        email: 'Marcus@gmail.com'
-    };
 
     const edit = () => {
         navigate('../edit')

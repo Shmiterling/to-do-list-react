@@ -2,6 +2,7 @@ import React, { createRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function CreateTask(): JSX.Element {
 
@@ -12,7 +13,34 @@ export default function CreateTask(): JSX.Element {
 
     const createTask = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        console.log('create task')
+
+        let taskName = (_taskName.current !== null ? _taskName.current.value : '');
+        let taskDescription = (_taskDescription.current !== null ? _taskDescription.current.value : '')
+
+        let data = {
+            user_id: localStorage.user_id,
+            title: taskName,
+            task_body: taskDescription
+        }
+
+        let config = {
+            method: 'POST',
+            url: 'https://todo.coldwinternight.ru/api/tasks?userid=' + localStorage.user_id,
+            headers: {
+                'Authorization': localStorage.jwt,
+            },
+            data
+        };
+
+        axios(config)
+            .then(res => {
+                console.log(res)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+
+            navigate('../tasks_library')
     }
 
     const backward = () => {

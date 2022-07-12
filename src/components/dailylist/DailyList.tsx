@@ -11,7 +11,7 @@ import axios from "axios";
 export interface TaskList {
     id: string,
     title: string,
-    description: string,
+    task_body: string,
     completed: boolean,
     today: boolean
 }
@@ -26,32 +26,7 @@ export default function DailyList(): JSX.Element {
 
     useEffect(() => {
         dispatch(changeToDaily());
-
-        // let newData = [
-        //     {
-        //         id: '2',
-        //         title: 'Wash the car',
-        //         description: `My car is so dirty and i nither my wife can't carry it anymore`,
-        //         completed: false,
-        //         today: true
-        //     },
-        //     {
-        //         id: '3',
-        //         title: 'Get the post',
-        //         description: 'I need to do it before i die',
-        //         completed: false,
-        //         today: true
-        //     },
-        //     {
-        //         id: '5',
-        //         title: `Don't kill the cat`,
-        //         description: `I hope you'll not be so lucky, little bustard`,
-        //         completed: false,
-        //         today: true
-        //     }
-        // ]
-        // setData(newData);
-        getData()
+        getData();
     }, [])
 
     const getData = () => {
@@ -65,7 +40,12 @@ export default function DailyList(): JSX.Element {
 
         axios(config)
             .then(res => {
-                console.log(res)
+                setData(res.data)
+                if(res.data[0] === undefined) {
+                    setIsEmpty(true)
+                } else {
+                    setIsEmpty(false)
+                }
             })
             .catch(err => {
                 console.log(err)
@@ -73,7 +53,7 @@ export default function DailyList(): JSX.Element {
 
 
     }
-
+    
     const toLibrary = () => {
         navigate('./tasks_library')
     }
@@ -82,7 +62,7 @@ export default function DailyList(): JSX.Element {
         <div className="DailyList">
             {!isEmpty && <div className="tasks_list">
                 {data.map((task) => {
-                    return <Task key={task.id} id={task.id} title={task.title} description={task.description} completed={task.completed} renderedIn='list' />
+                    return <Task key={task.id} id={task.id} title={task.title} description={task.task_body} completed={task.completed} renderedIn='list' />
                 })}
             </div>}
             {isEmpty && <div className="empty_task_list">

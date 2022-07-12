@@ -3,19 +3,38 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowCircleLeft,faUser } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 import { createRef } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 
 export default function Edit(): JSX.Element {
 
-    const navigate = useNavigate();
+    const [data,setData] = useState<Data>({});
 
+    const navigate = useNavigate();
     const _username = createRef<HTMLInputElement>()
 
-    const data: Data = {
-        id: '1',
-        username: 'Marcus',
-        email: 'Marcus@gmail.com'
-    }
+    useEffect(() => {
+        getData()
+    },[])
 
+    const getData = () => {
+        let config = {
+            method: 'get',
+            url: 'https://todo.coldwinternight.ru/api/users/' + localStorage.user_id,
+            headers: {
+                'Authorization': localStorage.jwt
+            },
+        }
+
+        axios(config)
+            .then(res => {
+                setData(res.data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+    
     const backward = () => {
         navigate('../profile')
     }
@@ -27,7 +46,7 @@ export default function Edit(): JSX.Element {
     const submit = () => {
         let username:string = (_username.current !== null? _username.current.value: '')
 
-        if (username === '') {
+        if (username === '' && data.username !== undefined) {
             username = data.username
         } 
 

@@ -40,7 +40,7 @@ export default function LogIn(): JSX.Element {
             },
             data: data
         };
-        
+        console.log(data)
         axios(config)
             .then(function (res) {
                 localStorage.setItem('user_id',res.data.user_id);

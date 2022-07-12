@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faXmark, faCheck, faArrowCircleLeft } from "@fortawesome/free-solid-svg-icons";
 import { createRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function ChangePassword(): JSX.Element {
 
@@ -79,8 +80,30 @@ export default function ChangePassword(): JSX.Element {
         }
 
         if (flag === false) {
-            console.log('success')
-            setSuccess(true)
+
+            let data = {
+                oldpassword: currentPassword,
+                newpassword: newPassword
+            };
+
+            let config = {
+                method: 'PATCH',
+                url: 'https://todo.coldwinternight.ru/api/users/' + localStorage.user_id + '/password',
+                headers: {
+                    'Authorization': localStorage.jwt,
+                },
+                data
+            };
+
+            console.log(data)
+            axios(config)
+                .then(res => {
+                    console.log(res)
+                    setSuccess(true)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
         } else {
             setErrorFlag(true);
         }
