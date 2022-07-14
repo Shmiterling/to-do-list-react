@@ -29,6 +29,11 @@ export default function DailyList(): JSX.Element {
         getData();
     }, [])
 
+    const sortData = (data:any) => {
+        console.log(data[0])
+        setData(data)
+    }
+
     const getData = () => {
         let config = {
             method:'GET',
@@ -40,7 +45,7 @@ export default function DailyList(): JSX.Element {
 
         axios(config)
             .then(res => {
-                setData(res.data)
+                sortData(res.data)
                 if(res.data[0] === undefined) {
                     setIsEmpty(true)
                 } else {
