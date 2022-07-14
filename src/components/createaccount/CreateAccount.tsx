@@ -136,11 +136,11 @@ export default function CreateAccount(): JSX.Element {
     }
 
     const backward = () => {
-        navigate('/to-do-list-react/')
+        navigate('/')
     }
 
     const logIn = () => {
-        navigate('/to-do-list-react/log_in')
+        navigate('/log_in')
     }
 
     return (

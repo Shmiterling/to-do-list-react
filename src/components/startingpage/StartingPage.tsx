@@ -7,7 +7,7 @@ export default function StartingPage():JSX.Element {
 
     useEffect(() => {
         if(localStorage.jwt !== undefined) {
-            navigate('/to-do-list-react/app')
+            navigate('/app')
         }
     },[])
 

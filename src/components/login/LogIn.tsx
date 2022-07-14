@@ -15,7 +15,7 @@ export default function LogIn(): JSX.Element {
     const _password = createRef<HTMLInputElement>();
 
     const backward = () => {
-        navigate('/to-do-list-react/')
+        navigate('/')
     }
     
     const logIn = (e: React.MouseEvent<HTMLElement>) => {
@@ -45,7 +45,7 @@ export default function LogIn(): JSX.Element {
             .then(function (res) {
                 localStorage.setItem('user_id',res.data.user_id);
                 localStorage.setItem('jwt',res.data.Authorization);
-                navigate('/to-do-list-react/app');
+                navigate('/app');
             })
             .catch(function (err) {
                 console.log(err);

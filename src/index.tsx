@@ -23,10 +23,10 @@ root.render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path='/to-do-list-react/' element={<StartingPage />}></Route>
-          <Route path='/to-do-list-react/app/*' element={<App />}></Route>
-          <Route path='/to-do-list-react/log_in' element={<LogIn />}></Route>
-          <Route path='/to-do-list-react/create_account' element={<CreateAccount />}></Route>
+          <Route path='/' element={<StartingPage />}></Route>
+          <Route path='/app/*' element={<App />}></Route>
+          <Route path='/log_in' element={<LogIn />}></Route>
+          <Route path='/create_account' element={<CreateAccount />}></Route>
         </Routes>
       </BrowserRouter>
     </Provider>
