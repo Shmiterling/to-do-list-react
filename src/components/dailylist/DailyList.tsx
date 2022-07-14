@@ -40,7 +40,7 @@ export default function DailyList(): JSX.Element {
         const smaller: TaskList[] = data.filter((task) => task.id < pivot.id);
         const bigger: TaskList[] = data.filter((task) => task.id > pivot.id);
 
-        return sortData(smaller).concat([pivot].concat(bigger)).reverse(z)
+        return sortData(smaller).concat([pivot].concat(bigger)).reverse()
 
     };
 
