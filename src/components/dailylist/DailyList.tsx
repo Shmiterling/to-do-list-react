@@ -32,7 +32,7 @@ export default function DailyList(): JSX.Element {
     const getData = () => {
         let config = {
             method:'GET',
-            url: 'https://todo.coldwinternight.ru/api/tasks?userid=' + localStorage.user_id,
+            url: 'http://localhost:8080/api/tasks?userid=' + localStorage.user_id,
             headers: {
                 'Authorization': localStorage.jwt,
             },

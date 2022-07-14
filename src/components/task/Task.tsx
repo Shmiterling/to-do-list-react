@@ -49,7 +49,7 @@ export default function Task(props: TaskProps): JSX.Element {
     const reverseComplete = () => {
         let config = {
             method: 'PATCH',
-            url: 'https://todo.coldwinternight.ru/api/tasks/' + props.id + '/reverseCompleted',
+            url: 'http://localhost:8080/api/tasks/' + props.id + '/reverseCompleted',
             headers: {
                 'Authorization': localStorage.jwt,
             }
@@ -72,7 +72,7 @@ export default function Task(props: TaskProps): JSX.Element {
     const reverseToday = (id: string) => {
         let config = {
             method: 'PATCH',
-            url: 'https://todo.coldwinternight.ru/api/tasks/' + props.id + '/reverseToday',
+            url: 'http://localhost:8080/api/tasks/' + props.id + '/reverseToday',
             headers: {
                 'Authorization': localStorage.jwt,
             }

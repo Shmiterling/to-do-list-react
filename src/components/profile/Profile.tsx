@@ -27,7 +27,7 @@ export default function Profile(): JSX.Element {
     const getData = () => {
         let config = {
             method: 'get',
-            url: 'https://todo.coldwinternight.ru/api/users/' + localStorage.user_id,
+            url: 'http://localhost:8080/api/users/' + localStorage.user_id,
             headers: {
                 'Authorization': localStorage.jwt
             },

@@ -34,7 +34,7 @@ export default function LogIn(): JSX.Element {
 
         let config = {
             method: 'post',
-            url: 'https://todo.coldwinternight.ru/api/login',
+            url: 'http://localhost:8080/api/login',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             },

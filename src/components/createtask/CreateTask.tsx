@@ -35,7 +35,7 @@ export default function CreateTask(): JSX.Element {
         console.log(data)
         let config = {
             method: 'POST',
-            url: 'https://todo.coldwinternight.ru/api/tasks?userid=' + localStorage.user_id,
+            url: 'http://localhost:8080/api/tasks?userid=' + localStorage.user_id,
             headers: {
                 'Authorization': localStorage.jwt,
             },
