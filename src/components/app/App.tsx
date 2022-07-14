@@ -7,7 +7,6 @@ import TasksLibrary from "../taskslibrary/TasksLibrary";
 import Edit from "../editprofile/edit";
 import ChangePassword from "../changepassword/ChangePassword";
 import CreateTask from "../createtask/CreateTask";
-import EditTask from "../editTask/EditTask";
 
 export default function App(): JSX.Element {
 

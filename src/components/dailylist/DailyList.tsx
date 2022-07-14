@@ -29,19 +29,24 @@ export default function DailyList(): JSX.Element {
         getData();
     }, [])
 
-    const sortData = (data:any) => {
+    const sortData: (data: TaskList[]) => TaskList[] = function (data): TaskList[] {
         let pivot = data[0];
         let length = data.length
-        
-        if(length < 2) {
-            setData(data)
+
+        if (length < 2) {
+            return data
         }
-        setData(data)
-    }
+
+        const smaller: TaskList[] = data.filter((task) => task.id < pivot.id);
+        const bigger: TaskList[] = data.filter((task) => task.id > pivot.id);
+
+        return sortData(smaller).concat([pivot].concat(bigger)).reverse()
+
+    };
 
     const getData = () => {
         let config = {
-            method:'GET',
+            method: 'GET',
             url: 'https://todo.coldwinternight.ru/api/tasks?userid=' + localStorage.user_id,
             headers: {
                 'Authorization': localStorage.jwt,
@@ -50,8 +55,8 @@ export default function DailyList(): JSX.Element {
 
         axios(config)
             .then(res => {
-                sortData(res.data)
-                if(res.data[0] === undefined) {
+                setData(sortData(res.data))
+                if (res.data[0] === undefined) {
                     setIsEmpty(true)
                 } else {
                     setIsEmpty(false)
@@ -59,11 +64,9 @@ export default function DailyList(): JSX.Element {
             })
             .catch(err => {
                 console.log(err)
-            }) 
-
-
+            })
     }
-    
+
     const toLibrary = () => {
         navigate('./tasks_library')
     }
