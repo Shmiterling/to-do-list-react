@@ -115,7 +115,7 @@ export default function CreateAccount(): JSX.Element {
                 randomize_today_tasks: false
             };
 
-            axios.post('http://localhost:8080/api/users',
+            axios.post('https://todo.coldwinternight.ru/api/users',
                 data,
                 axiosConfig)
                 .then((res) => {

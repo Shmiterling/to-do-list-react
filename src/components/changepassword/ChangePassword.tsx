@@ -88,7 +88,7 @@ export default function ChangePassword(): JSX.Element {
 
             let config = {
                 method: 'PATCH',
-                url: 'http://localhost:8080/api/users/' + localStorage.user_id + '/password',
+                url: 'https://todo.coldwinternight.ru/api/users/' + localStorage.user_id + '/password',
                 headers: {
                     'Authorization': localStorage.jwt,
                 },

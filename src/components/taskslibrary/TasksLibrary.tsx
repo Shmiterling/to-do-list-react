@@ -41,7 +41,7 @@ export default function TasksLibrary(): JSX.Element {
     const getData = () => {
         let config = {
             method:'GET',
-            url: 'http://localhost:8080/api/tasks?userid=' + localStorage.user_id,
+            url: 'https://todo.coldwinternight.ru/api/tasks?userid=' + localStorage.user_id,
             headers: {
                 'Authorization': localStorage.jwt,
             },
