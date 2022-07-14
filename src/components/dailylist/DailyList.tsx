@@ -31,7 +31,7 @@ export default function DailyList(): JSX.Element {
 
     const sortData: (data: TaskList[]) => TaskList[] = function (data): TaskList[] {
         let pivot = data[0];
-        let length = data.length
+        let length = data.length;
 
         if (length < 2) {
             return data
@@ -40,7 +40,7 @@ export default function DailyList(): JSX.Element {
         const smaller: TaskList[] = data.filter((task) => task.id < pivot.id);
         const bigger: TaskList[] = data.filter((task) => task.id > pivot.id);
 
-        return sortData(smaller).concat([pivot].concat(bigger)).reverse()
+        return sortData(smaller).concat([pivot].concat(sortData(bigger)))
 
     };
 
@@ -55,7 +55,7 @@ export default function DailyList(): JSX.Element {
 
         axios(config)
             .then(res => {
-                setData(sortData(res.data))
+                setData(sortData(res.data).reverse())
                 if (res.data[0] === undefined) {
                     setIsEmpty(true)
                 } else {
@@ -70,6 +70,8 @@ export default function DailyList(): JSX.Element {
     const toLibrary = () => {
         navigate('./tasks_library')
     }
+
+    console.log(data)
 
     return (
         <div className="DailyList">

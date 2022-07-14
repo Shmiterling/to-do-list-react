@@ -34,8 +34,7 @@ export default function TasksLibrary(): JSX.Element {
         const smaller: TaskList[] = data.filter((task) => task.id < pivot.id);
         const bigger: TaskList[] = data.filter((task) => task.id > pivot.id);
 
-        return sortData(smaller).concat([pivot].concat(bigger)).reverse();
-
+        return sortData(smaller).concat([pivot].concat(sortData(bigger)));
     };
 
     const getData = () => {
@@ -49,7 +48,7 @@ export default function TasksLibrary(): JSX.Element {
 
         axios(config)
             .then(res => {
-                setData(sortData(res.data))
+                setData(sortData(res.data).reverse())
                 if(res.data[0] === undefined) {
                     setIsEmpty(true)
                 } else {
@@ -64,6 +63,8 @@ export default function TasksLibrary(): JSX.Element {
     const createNewTask = () => {
         navigate('../create_task')
     }
+
+    console.log(data)
 
     return (
         <div className="TasksLibrary">
