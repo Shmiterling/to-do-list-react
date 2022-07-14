@@ -11,7 +11,7 @@ import axios from "axios";
 export interface TaskList {
     id: string,
     title: string,
-    task_body: string,
+    taskBody: string,
     completed: boolean,
     today: boolean
 }
@@ -75,7 +75,7 @@ export default function DailyList(): JSX.Element {
         <div className="DailyList">
             {!isEmpty && <div className="tasks_list">
                 {data.map((task) => {
-                    return <Task key={task.id} id={task.id} title={task.title} description={task.task_body} completed={task.completed} renderedIn='list' />
+                    return <Task key={task.id} id={task.id} title={task.title} description={task.taskBody} completed={task.completed} renderedIn='list' />
                 })}
             </div>}
             {isEmpty && <div className="empty_task_list">

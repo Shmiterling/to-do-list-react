@@ -71,7 +71,7 @@ export default function TasksLibrary(): JSX.Element {
                 <FontAwesomeIcon className='add_icon' icon={faCirclePlus} onClick={() => { createNewTask() }}></FontAwesomeIcon>
                 <div className="tasks_list">
                     {data.map((task) => {
-                        return <Task key={task.id} id={task.id} title={task.title} description={task.task_body} completed={task.completed} today={task.today} renderedIn='library' />
+                        return <Task key={task.id} id={task.id} title={task.title} description={task.taskBody} completed={task.completed} today={task.today} renderedIn='library' />
                     })}
                 </div>
                 <div className="safe_container"></div>

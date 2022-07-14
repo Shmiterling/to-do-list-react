@@ -23,7 +23,7 @@ export default function CreateTask(): JSX.Element {
             data = {
                 user_id: localStorage.user_id,
                 title: taskName,
-                task_body: taskDescription
+                taskBody: taskDescription
             }
         } else {
             data = {
