@@ -30,7 +30,12 @@ export default function DailyList(): JSX.Element {
     }, [])
 
     const sortData = (data:any) => {
-        console.log(data[0])
+        let pivot = data[0];
+        let length = data.length
+        
+        if(length < 2) {
+            setData(data)
+        }
         setData(data)
     }
 
