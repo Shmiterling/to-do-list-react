@@ -49,7 +49,7 @@ export default function Profile(): JSX.Element {
     const logOut = () => {
         localStorage.removeItem('user_id');
         localStorage.removeItem('jwt');
-        navigate('/to-do-list-react');
+        navigate('/');
     };
 
     return (
