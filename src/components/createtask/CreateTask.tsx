@@ -45,12 +45,12 @@ export default function CreateTask(): JSX.Element {
         axios(config)
             .then(res => {
                 console.log(res)
+                navigate('../tasks_library')
             })
             .catch(err => {
                 console.log(err)
             })
 
-        navigate('../tasks_library')
     }
 
     const backward = () => {
