@@ -25,17 +25,17 @@ export default function Task(props: TaskProps): JSX.Element {
     useEffect(() => {
         if (props.completed === true) {
             setIsCompleted(true)
-        }
+        };
 
         if (props.description === '') {
             setIsEmpty(true)
         } else {
             setIsEmpty(false)
-        }
+        };
 
         if (props.today === true) {
             setIsToday(true)
-        }
+        };
     }, [])
 
     const openCloseTask = () => {
@@ -46,10 +46,10 @@ export default function Task(props: TaskProps): JSX.Element {
         }
     }
 
-    const completeTask = () => {
+    const reverseComplete = () => {
         let config = {
             method: 'PATCH',
-            url: 'https://todo.coldwinternight.ru/api/tasks/' + props.id + '/reverseStatus',
+            url: 'https://todo.coldwinternight.ru/api/tasks/' + props.id + '/reverseCompleted',
             headers: {
                 'Authorization': localStorage.jwt,
             }
@@ -58,23 +58,35 @@ export default function Task(props: TaskProps): JSX.Element {
         axios(config)
             .then(res => {
                 console.log(res)
+                setIsCompleted(!isCompleted)
             })
             .catch(err => {
                 console.log(err)
             })
-        if (isCompleted === false) {
-            setIsCompleted(true)
-        } else {
-            setIsCompleted(false)
-        }
     }
 
-    const options = () => {
+    const reverseOptions = () => {
         setOptionsVisible(!optionsVisible)
     }
 
-    const addToDailyList = (id: string) => {
+    const reverseToday = (id: string) => {
+        let config = {
+            method: 'PATCH',
+            url: 'https://todo.coldwinternight.ru/api/tasks/' + props.id + '/reverseToday',
+            headers: {
+                'Authorization': localStorage.jwt,
+            }
+        };
 
+        axios(config)
+            .then(res => {
+                console.log(res)
+                setIsToday(!isToday)
+                reverseOptions()
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     const editTask = (id: string, title: string, description: string, completed: boolean, today?: boolean) => {
@@ -87,31 +99,24 @@ export default function Task(props: TaskProps): JSX.Element {
         console.log(id)
     }
 
-    const removeFromDailyList = (id: string) => {
-        setOptionsVisible(false);
-        console.log(id)
-    }
-
-
-
     return (
         <div className={"Task " + props.renderedIn + (isOpened === true ? ' opened' : ' closed') + (isToday === false ? '' : ' today')}>
-            {optionsVisible && <div className="background_container" onClick={() => options()}></div>}
+            {optionsVisible && <div className="background_container" onClick={() => reverseOptions()}></div>}
             <div className="title_container">
                 <div className="chevron_container">
                     {!isEmpty && <FontAwesomeIcon icon={faChevronDown} onClick={() => openCloseTask()}></FontAwesomeIcon>}
                 </div>
                 <p>{props.title}</p>
-                <div className={"complete_circle" + (isCompleted === true ? ' completed' : '')} onClick={() => completeTask()}>
+                <div className={"complete_circle" + (isCompleted === true ? ' completed' : '')} onClick={() => reverseComplete()}>
                     <FontAwesomeIcon icon={faCheck} className="icon" ></FontAwesomeIcon>
                 </div>
-                <div className={"options_container"} onClick={() => options()}>
+                <div className={"options_container"} onClick={() => reverseOptions()}>
                     <FontAwesomeIcon icon={faEllipsisVertical} className="icon" ></FontAwesomeIcon>
                 </div>
 
                 {optionsVisible && <div className="options_menu">
-                    {!props.today && <span onClick={() => addToDailyList(props.id)}>Add to Daily List<FontAwesomeIcon icon={faFileCircleCheck} /></span>}
-                    {props.today && <span onClick={() => removeFromDailyList(props.id)}>Remove from Daily List<FontAwesomeIcon icon={faBan} /></span>}
+                    {!isToday && <span onClick={() => reverseToday(props.id)}>Add to Daily List<FontAwesomeIcon icon={faFileCircleCheck} /></span>}
+                    {isToday && <span onClick={() => reverseToday(props.id)}>Remove from Daily List<FontAwesomeIcon icon={faBan} /></span>}
                     <span onClick={() => editTask(props.id, props.title, props.description, props.completed, props.today)}>Edit Task<FontAwesomeIcon icon={faPenToSquare} /></span>
                     <span onClick={() => deleteTask(props.id)}>Delete Task<FontAwesomeIcon icon={faTrash} /></span>
                 </div>}

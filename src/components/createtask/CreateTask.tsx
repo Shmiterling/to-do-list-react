@@ -17,12 +17,22 @@ export default function CreateTask(): JSX.Element {
         let taskName = (_taskName.current !== null ? _taskName.current.value : '');
         let taskDescription = (_taskDescription.current !== null ? _taskDescription.current.value : '')
 
-        let data = {
-            user_id: localStorage.user_id,
-            title: taskName,
-            task_body: taskDescription
+        let data: {}
+
+        if (taskDescription !== '') {
+            data = {
+                user_id: localStorage.user_id,
+                title: taskName,
+                task_body: taskDescription
+            }
+        } else {
+            data = {
+                user_id: localStorage.user_id,
+                title: taskName
+            }
         }
 
+        console.log(data)
         let config = {
             method: 'POST',
             url: 'https://todo.coldwinternight.ru/api/tasks?userid=' + localStorage.user_id,
@@ -40,7 +50,7 @@ export default function CreateTask(): JSX.Element {
                 console.log(err)
             })
 
-            navigate('../tasks_library')
+        navigate('../tasks_library')
     }
 
     const backward = () => {

@@ -1,7 +1,7 @@
 import { faArrowRightFromBracket, faPenToSquare, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { changeToProfile } from "../../store/navbarSlice";
@@ -15,14 +15,14 @@ export type Data = {
 export default function Profile(): JSX.Element {
 
 
-    const [data,setData] = useState<Data>({})
+    const [data, setData] = useState<Data>({})
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
         getData()
         dispatch(changeToProfile())
-    },[])
+    }, [])
 
     const getData = () => {
         let config = {
