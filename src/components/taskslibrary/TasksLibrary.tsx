@@ -80,7 +80,7 @@ export default function TasksLibrary(): JSX.Element {
 
             {isEmpty && <div className="empty_daily">
                 <h1>Well Done</h1>
-                <p>Seems you’ve already done all the tasks!
+                <p>Seems you've already done all the tasks!
                     Perfect time to create a <span>NEW</span> one!</p>
                 <FontAwesomeIcon onClick={() => createNewTask()} icon={faCirclePlus} className='add_task'></FontAwesomeIcon>
             </div>}
