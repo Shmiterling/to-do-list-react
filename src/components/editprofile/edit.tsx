@@ -28,6 +28,7 @@ export default function Edit(): JSX.Element {
 
         axios(config)
             .then(res => {
+                console.log(res)
                 setData(res.data)
             })
             .catch(err => {

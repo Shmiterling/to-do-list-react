@@ -47,7 +47,7 @@ export default function DailyList(): JSX.Element {
     const getData = () => {
         let config = {
             method: 'GET',
-            url: 'https://todo.coldwinternight.ru/api/tasks?userid=' + localStorage.user_id,
+            url: 'https://todo.coldwinternight.ru/api/tasks/today',
             headers: {
                 'Authorization': localStorage.jwt,
             },
@@ -55,6 +55,7 @@ export default function DailyList(): JSX.Element {
 
         axios(config)
             .then(res => {
+                console.log(res)
                 setData(sortData(res.data).reverse())
                 if (res.data[0] === undefined) {
                     setIsEmpty(true)

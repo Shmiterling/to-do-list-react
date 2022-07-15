@@ -35,6 +35,7 @@ export default function Profile(): JSX.Element {
 
         axios(config)
             .then(res => {
+                console.log(res)
                 setData(res.data)
             })
             .catch(err => {

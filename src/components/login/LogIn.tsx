@@ -40,14 +40,14 @@ export default function LogIn(): JSX.Element {
             },
             data: data
         };
-        console.log(data)
         axios(config)
-            .then(function (res) {
+            .then((res) => {
+                console.log(res)
                 localStorage.setItem('user_id',res.data.user_id);
                 localStorage.setItem('jwt',res.data.Authorization);
                 navigate('/app');
             })
-            .catch(function (err) {
+            .catch((err) => {
                 console.log(err);
                 setResError(true);
             });
