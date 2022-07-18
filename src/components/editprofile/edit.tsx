@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { createRef } from "react";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import preloader from "../../img/Pulse-1.5s-200px.gif"
 
 export default function Edit(): JSX.Element {
 
     const [data,setData] = useState<Data>({});
-
+    const [preloaderVisible, setPreloaderVisible] = useState<boolean>(false)
     const navigate = useNavigate();
     const _username = createRef<HTMLInputElement>()
 
@@ -18,9 +19,12 @@ export default function Edit(): JSX.Element {
     },[])
 
     const getData = () => {
+
+        setPreloaderVisible(true);
+
         let config = {
             method: 'get',
-            url: 'https://todo.coldwinternight.ru/api/users/' + localStorage.user_id,
+            url: 'https://todo.coldwinternight.ru/api/users/',
             headers: {
                 'Authorization': localStorage.jwt
             },
@@ -30,6 +34,7 @@ export default function Edit(): JSX.Element {
             .then(res => {
                 console.log(res)
                 setData(res.data)
+                setPreloaderVisible(false)
             })
             .catch(err => {
                 console.log(err)
@@ -61,7 +66,8 @@ export default function Edit(): JSX.Element {
             <div className="picture_container">
                 <FontAwesomeIcon className="user" icon={faUser}></FontAwesomeIcon>
             </div>
-            <input ref={_username} type="text" placeholder={data.username} />
+            {preloaderVisible && <img src={preloader} id="preloader" alt="preloader" />}
+            {!preloaderVisible && <input ref={_username} type="text" placeholder={data.username} />}
             <button type="button" className="change_password_button" onClick={() => changePassword()}>Change Password</button>
             <button type="button" className="submit_button" onClick={() => submit()}>Submit</button>
         </div>

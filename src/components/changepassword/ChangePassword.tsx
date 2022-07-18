@@ -26,6 +26,7 @@ export default function ChangePassword(): JSX.Element {
     const [passNumber, setPassNumber] = useState<boolean>(false);
     const [passLength, setPassLength] = useState<boolean>(false);
     const [passMatch, setPassMatch] = useState<boolean>(false);
+    const [samePass, setSamePass] = useState<boolean>(false);
 
     const submit = () => {
         setErrorFlag(false)
@@ -79,6 +80,11 @@ export default function ChangePassword(): JSX.Element {
             flag = true
         }
 
+        if (currentPassword === newPassword) {
+            setSamePass(true)
+            flag = true
+        }
+
         if (flag === false) {
 
             let data = {
@@ -88,7 +94,7 @@ export default function ChangePassword(): JSX.Element {
 
             let config = {
                 method: 'PATCH',
-                url: 'https://todo.coldwinternight.ru/api/users/' + localStorage.user_id + '/password',
+                url: 'https://todo.coldwinternight.ru/api/users/password',
                 headers: {
                     'Authorization': localStorage.jwt,
                 },
@@ -102,6 +108,8 @@ export default function ChangePassword(): JSX.Element {
                     setSuccess(true)
                 })
                 .catch(err => {
+                    setErrorFlag(true)
+                    setCurrentWrong(true)
                     console.log(err)
                 })
         } else {
@@ -139,6 +147,7 @@ export default function ChangePassword(): JSX.Element {
                     {currentPassEmpty && <p>Current password field is required</p>}
                     {newPassEmpty && <p>New password field is required</p>}
                     {confirmPassEmpty && <p>Confirm new password field is required</p>}
+                    {samePass && <p>Current password and new password are the same</p>}
                 </div>
             </div>}
             <FontAwesomeIcon icon={faArrowCircleLeft} className="back_icon" onClick={() => backward()}></FontAwesomeIcon>

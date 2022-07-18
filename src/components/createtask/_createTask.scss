@@ -57,6 +57,29 @@
         input:focus {
             outline: none;
         }
+        
+        .checkbox_container{
+            margin-top: 20px;
+            width: 100%;
+
+            label {
+                margin-left: 30px;
+            }
+            .checkbox {
+                position: absolute;
+                width:20px;
+                height: 20px;
+                outline: $primary_font_color 1px solid;
+                border-radius: 100%;
+                padding:2px;
+                border: #fff 2px solid;
+                cursor: pointer;
+            }
+    
+            .checkbox.selected {
+                background-color: $primary_blue;
+            }
+        }
 
         button {
             @include button_settings;

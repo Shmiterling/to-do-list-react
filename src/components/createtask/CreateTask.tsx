@@ -1,4 +1,4 @@
-import React, { createRef } from "react";
+import React, { createRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,8 @@ import axios from "axios";
 export default function CreateTask(): JSX.Element {
 
     const _taskName = createRef<HTMLInputElement>()
-    const _taskDescription = createRef<HTMLTextAreaElement>()
+    const _taskBody = createRef<HTMLTextAreaElement>()
+    const [today, setToday] = useState<boolean>(false)
 
     const navigate = useNavigate()
 
@@ -15,20 +16,22 @@ export default function CreateTask(): JSX.Element {
         e.preventDefault();
 
         let taskName = (_taskName.current !== null ? _taskName.current.value : '');
-        let taskDescription = (_taskDescription.current !== null ? _taskDescription.current.value : '')
+        let taskBody = (_taskBody.current !== null ? _taskBody.current.value : '')
 
         let data: {}
 
-        if (taskDescription !== '') {
+        if (taskBody !== '') {
             data = {
                 user_id: localStorage.user_id,
                 title: taskName,
-                taskBody: taskDescription
+                taskBody: taskBody,
+                today: today
             }
         } else {
             data = {
                 user_id: localStorage.user_id,
-                title: taskName
+                title: taskName,
+                today: today
             }
         }
 
@@ -57,6 +60,10 @@ export default function CreateTask(): JSX.Element {
         navigate('../tasks_library')
     }
 
+    const addToDaily = () => {
+        setToday(!today)
+    }
+
     return (
         <div className="CreateTask">
             <FontAwesomeIcon icon={faCircleArrowLeft} className="back" onClick={() => backward()}></FontAwesomeIcon>
@@ -65,7 +72,13 @@ export default function CreateTask(): JSX.Element {
                 <input ref={_taskName} id="task_name" type="text" />
 
                 <label htmlFor="description">Task Description <span className="add_info">maximum 20 characters</span></label>
-                <textarea ref={_taskDescription} id="description" />
+                <textarea ref={_taskBody} id="description" />
+                
+                <div className="checkbox_container">
+                    <span className={(today === true ? 'checkbox selected' : 'checkbox')} onClick={() => addToDaily()}></span>
+                    <label htmlFor="today_checkbox" id="today_label">Add to Daily List</label>
+
+                </div>
 
                 <button type="submit" onClick={(e) => createTask(e)}>Create</button>
             </form>

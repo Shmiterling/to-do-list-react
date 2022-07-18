@@ -7,11 +7,13 @@ import { changeToLibrary } from "../../store/navbarSlice";
 import { TaskList } from "../dailylist/DailyList";
 import Task from "../task/Task";
 import axios from "axios";
+import preloader from "../../img/Pulse-1.5s-200px.gif"
 
 export default function TasksLibrary(): JSX.Element {
 
     const [data, setData] = useState<TaskList[]>([]);
     const [isEmpty, setIsEmpty] = useState<boolean>(false);
+    const [preloaderVisible,setPreloaderVisible] = useState<boolean>(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -38,6 +40,9 @@ export default function TasksLibrary(): JSX.Element {
     };
 
     const getData = () => {
+
+        setPreloaderVisible(true);
+
         let config = {
             method:'GET',
             url: 'https://todo.coldwinternight.ru/api/tasks?userid=' + localStorage.user_id,
@@ -49,6 +54,7 @@ export default function TasksLibrary(): JSX.Element {
         axios(config)
             .then(res => {
                 console.log(res)
+                setPreloaderVisible(false);
                 setData(sortData(res.data).reverse())
                 if(res.data[0] === undefined) {
                     setIsEmpty(true)
@@ -69,7 +75,8 @@ export default function TasksLibrary(): JSX.Element {
 
     return (
         <div className="TasksLibrary">
-            {!isEmpty && <div>
+            {preloaderVisible && <img src={preloader} id="preloader" alt="preloader" />}
+            {(!isEmpty && !preloaderVisible) && <div>
                 <FontAwesomeIcon className='add_icon' icon={faCirclePlus} onClick={() => { createNewTask() }}></FontAwesomeIcon>
                 <div className="tasks_list">
                     {data.map((task) => {
@@ -79,7 +86,7 @@ export default function TasksLibrary(): JSX.Element {
                 <div className="safe_container"></div>
             </div>}
 
-            {isEmpty && <div className="empty_daily">
+            {(isEmpty && !preloaderVisible) && <div className="empty_daily">
                 <h1>Well Done</h1>
                 <p>Seems you've already done all the tasks!
                     Perfect time to create a <span>NEW</span> one!</p>

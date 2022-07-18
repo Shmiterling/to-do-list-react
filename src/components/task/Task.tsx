@@ -11,32 +11,30 @@ interface TaskProps {
     completed: boolean,
     today?: boolean,
     renderedIn: string,
+    reverseCompleted?:(id:string) => void
 }
 
 export default function Task(props: TaskProps): JSX.Element {
 
     const [isOpened, setIsOpened] = useState<boolean>(false);
-    const [isCompleted, setIsCompleted] = useState<boolean>(false);
     const [isEmpty, setIsEmpty] = useState<boolean>(false);
     const [isToday, setIsToday] = useState<boolean>(false);
     const [optionsVisible, setOptionsVisible] = useState<boolean>(false);
     const [edit, setEdit] = useState<boolean>(false);
 
     useEffect(() => {
-        if (props.completed === true) {
-            setIsCompleted(true)
-        };
-
+        // if (props.completed === true) {
+        //     setIsCompleted(true)
+        // };
         if (props.description === '') {
             setIsEmpty(true)
         } else {
             setIsEmpty(false)
         };
-
         if (props.today === true) {
             setIsToday(true)
         };
-    }, [])
+    },[])
 
     const openCloseTask = () => {
         if (isOpened === false) {
@@ -46,23 +44,10 @@ export default function Task(props: TaskProps): JSX.Element {
         }
     }
 
-    const reverseComplete = () => {
-        let config = {
-            method: 'PATCH',
-            url: 'https://todo.coldwinternight.ru/api/tasks/' + props.id + '/reverseCompleted',
-            headers: {
-                'Authorization': localStorage.jwt,
-            }
-        };
-
-        axios(config)
-            .then(res => {
-                console.log(res)
-                setIsCompleted(!isCompleted)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+    const reverseCompleted = (id:string) => {
+        if(props.reverseCompleted !== undefined) {
+            props.reverseCompleted(id)
+        }
     }
 
     const reverseOptions = () => {
@@ -80,7 +65,7 @@ export default function Task(props: TaskProps): JSX.Element {
 
         axios(config)
             .then(res => {
-                console.log(res)
+                // console.log(res)
                 setIsToday(!isToday)
                 reverseOptions()
             })
@@ -107,7 +92,7 @@ export default function Task(props: TaskProps): JSX.Element {
                     {!isEmpty && <FontAwesomeIcon icon={faChevronDown} onClick={() => openCloseTask()}></FontAwesomeIcon>}
                 </div>
                 <p>{props.title}</p>
-                <div className={"complete_circle" + (isCompleted === true ? ' completed' : '')} onClick={() => reverseComplete()}>
+                <div className={"complete_circle" + (props.completed === true ? ' completed' : '')} onClick={() => reverseCompleted(props.id)}>
                     <FontAwesomeIcon icon={faCheck} className="icon" ></FontAwesomeIcon>
                 </div>
                 <div className={"options_container"} onClick={() => reverseOptions()}>
