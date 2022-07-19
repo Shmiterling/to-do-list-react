@@ -42,7 +42,6 @@ export default function LogIn(): JSX.Element {
         };
         axios(config)
             .then((res) => {
-                console.log(res)
                 localStorage.setItem('user_id',res.data.user_id);
                 localStorage.setItem('jwt',res.data.Authorization);
                 navigate('/app');

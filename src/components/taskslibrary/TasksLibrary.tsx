@@ -53,7 +53,6 @@ export default function TasksLibrary(): JSX.Element {
 
         axios(config)
             .then(res => {
-                console.log(res)
                 setPreloaderVisible(false);
                 setData(sortData(res.data).reverse())
                 if(res.data[0] === undefined) {
@@ -70,8 +69,6 @@ export default function TasksLibrary(): JSX.Element {
     const createNewTask = () => {
         navigate('../create_task')
     }
-
-    console.log(data)
 
     return (
         <div className="TasksLibrary">

@@ -86,7 +86,6 @@ export default function DailyList(): JSX.Element {
     const allCompletedCheck = () => {
         setAllCompleted(false)
         let i = 0
-        console.log(data)
         for (const task of data) {
             if (task.completed === false) {
                 i++
@@ -111,7 +110,6 @@ export default function DailyList(): JSX.Element {
 
         axios(config)
             .then(res => {
-                console.log(res)
                 let taskIndex = data.findIndex((task) => task.id === id);
                 let task = data[taskIndex];
                 task.completed = !task.completed;
@@ -139,7 +137,7 @@ export default function DailyList(): JSX.Element {
                 <p>Choose one or few of them!</p>
                 <FontAwesomeIcon onClick={() => toLibrary()} icon={faCirclePlus} className='add_task'></FontAwesomeIcon>
             </div>}
-            {allCompleted && <button onClick={() => console.log('Close function')}>Close Daily List</button>}
+            {(allCompleted && !isEmpty) && <button onClick={() => console.log('Close function')}>Close Daily List</button>}
         </div>
     )
 }

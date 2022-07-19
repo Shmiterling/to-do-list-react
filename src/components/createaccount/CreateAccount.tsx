@@ -119,7 +119,6 @@ export default function CreateAccount(): JSX.Element {
                 data,
                 axiosConfig)
                 .then((res) => {
-                    console.log(res)
                     setSuccess(true)
                 })
                 .catch((err) => {

@@ -101,10 +101,8 @@ export default function ChangePassword(): JSX.Element {
                 data
             };
 
-            console.log(data)
             axios(config)
                 .then(res => {
-                    console.log(res)
                     setSuccess(true)
                 })
                 .catch(err => {

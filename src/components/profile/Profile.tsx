@@ -40,7 +40,6 @@ export default function Profile(): JSX.Element {
 
         axios(config)
             .then(res => {
-                console.log(res)
                 setPreloaderVisible(false);
                 setData(res.data)
             })

@@ -35,7 +35,6 @@ export default function CreateTask(): JSX.Element {
             }
         }
 
-        console.log(data)
         let config = {
             method: 'POST',
             url: 'https://todo.coldwinternight.ru/api/tasks?userid=' + localStorage.user_id,
@@ -47,7 +46,6 @@ export default function CreateTask(): JSX.Element {
 
         axios(config)
             .then(res => {
-                console.log(res)
                 navigate('../tasks_library')
             })
             .catch(err => {

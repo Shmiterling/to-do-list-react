@@ -37,7 +37,6 @@ export default function EditTask(props: EditTask): JSX.Element {
 
     const submitChanges = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        console.log('submit changes' + props.id)
         props.setEdit(false);
     };
 

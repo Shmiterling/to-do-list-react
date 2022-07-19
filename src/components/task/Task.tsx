@@ -65,7 +65,6 @@ export default function Task(props: TaskProps): JSX.Element {
 
         axios(config)
             .then(res => {
-                // console.log(res)
                 setIsToday(!isToday)
                 reverseOptions()
             })
@@ -81,7 +80,6 @@ export default function Task(props: TaskProps): JSX.Element {
 
     const deleteTask = (id: string) => {
         setOptionsVisible(false);
-        console.log(id)
     }
 
     return (
