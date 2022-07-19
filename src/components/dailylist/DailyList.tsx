@@ -123,6 +123,27 @@ export default function DailyList(): JSX.Element {
 
     }
 
+    const closeDailyList = () => {
+
+        let config = {
+            method: 'DELETE',
+            url: "https://todo.coldwinternight.ru/api/tasks/today",
+            headers: {
+                'Authorization': localStorage.jwt,
+            }
+        };
+
+        axios(config)
+            .then(res => {
+                console.log(res);
+                getData()
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        
+    }
+
     return (
         <div className="DailyList">
             {preloaderVisible && <img src={preloader} id="preloader" alt="preloader" />}
@@ -136,7 +157,7 @@ export default function DailyList(): JSX.Element {
                 <p>Choose one or few of them!</p>
                 <FontAwesomeIcon onClick={() => toLibrary()} icon={faCirclePlus} className='add_task'></FontAwesomeIcon>
             </div>}
-            {(allCompleted && !isEmpty && !preloaderVisible) && <button onClick={() => console.log('Close function')}>Close Daily List</button>}
+            {(allCompleted && !isEmpty && !preloaderVisible) && <button onClick={() => closeDailyList()}>Close Daily List</button>}
         </div>
     )
 }
