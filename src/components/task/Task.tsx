@@ -11,21 +11,24 @@ interface TaskProps {
     completed: boolean,
     today?: boolean,
     renderedIn: string,
-    reverseCompleted?:(id:string) => void
+    reverseCompleted?:(id:string) => void,
+    deleteTask?:(id:string) => void
 }
 
 export default function Task(props: TaskProps): JSX.Element {
 
+    const [title, setTitle] = useState<string>('');
+    const [body, setBody] = useState<string>('');
     const [isOpened, setIsOpened] = useState<boolean>(false);
     const [isEmpty, setIsEmpty] = useState<boolean>(false);
     const [isToday, setIsToday] = useState<boolean>(false);
     const [optionsVisible, setOptionsVisible] = useState<boolean>(false);
     const [edit, setEdit] = useState<boolean>(false);
+    const [isDeleted, setDeleted] = useState<boolean>(false)
 
     useEffect(() => {
-        // if (props.completed === true) {
-        //     setIsCompleted(true)
-        // };
+
+
         if (props.description === '') {
             setIsEmpty(true)
         } else {
@@ -34,6 +37,9 @@ export default function Task(props: TaskProps): JSX.Element {
         if (props.today === true) {
             setIsToday(true)
         };
+
+        setTitle(props.title);
+        setBody(props.description);
     },[])
 
     const openCloseTask = () => {
@@ -79,17 +85,20 @@ export default function Task(props: TaskProps): JSX.Element {
     }
 
     const deleteTask = (id: string) => {
+        if (props.deleteTask !== undefined) {
+            props.deleteTask(id)
+        }
         setOptionsVisible(false);
     }
 
     return (
-        <div className={"Task " + props.renderedIn + (isOpened === true ? ' opened' : ' closed') + (isToday === false ? '' : ' today')}>
+        <div className={"Task " + props.renderedIn + (isOpened === true ? ' opened' : ' closed') + (isToday === false ? '' : ' today') + (isDeleted === true? ' deleted':'')}>
             {optionsVisible && <div className="background_container" onClick={() => reverseOptions()}></div>}
             <div className="title_container">
                 <div className="chevron_container">
                     {!isEmpty && <FontAwesomeIcon icon={faChevronDown} onClick={() => openCloseTask()}></FontAwesomeIcon>}
                 </div>
-                <p>{props.title}</p>
+                <p>{title}</p>
                 <div className={"complete_circle" + (props.completed === true ? ' completed' : '')} onClick={() => reverseCompleted(props.id)}>
                     <FontAwesomeIcon icon={faCheck} className="icon" ></FontAwesomeIcon>
                 </div>
@@ -105,10 +114,10 @@ export default function Task(props: TaskProps): JSX.Element {
                 </div>}
             </div>
             {!isEmpty && <div className="description_container visible">
-                <p>{props.description}</p>
+                <p>{body}</p>
             </div>}
 
-            {edit && <EditTask id={props.id} title={props.title} description={props.description} setEdit={setEdit} />}
+            {edit && <EditTask id={props.id} title={props.title} description={props.description} setEdit={setEdit} setTitle={setTitle} setBody={setBody}/>}
         </div>
     )
 }

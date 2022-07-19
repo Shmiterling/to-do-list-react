@@ -49,14 +49,32 @@ export default function Edit(): JSX.Element {
     }
 
     const submit = () => {
+        
         let username:string = (_username.current !== null? _username.current.value: '')
 
-        if (username === '' && data.username !== undefined) {
-            username = data.username
-        } 
+        if(username !== '') {
+            let data = {
+                username: username
+            };
 
-        navigate('../profile')
-
+            let config = {
+                method: 'PATCH',
+                url: 'https://todo.coldwinternight.ru/api/users/username',
+                headers: {
+                    'Authorization': localStorage.jwt
+                },
+                data
+            };
+    
+            axios(config)
+                .then(res => {
+                    console.log(res)
+                    backward()
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
     }
 
     return (

@@ -69,7 +69,7 @@ export default function CreateTask(): JSX.Element {
                 <label htmlFor="task_name">Task Name <span className="add_info">maximum 20 characters</span></label>
                 <input ref={_taskName} id="task_name" type="text" />
 
-                <label htmlFor="description">Task Description <span className="add_info">maximum 20 characters</span></label>
+                <label htmlFor="description">Task Description <span className="add_info">maximum 200 characters</span></label>
                 <textarea ref={_taskBody} id="description" />
                 
                 <div className="checkbox_container">

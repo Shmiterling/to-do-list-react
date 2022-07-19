@@ -24,7 +24,6 @@ export default function TasksLibrary(): JSX.Element {
         getData()
     }, [])
 
-
     const sortData: (data: TaskList[]) => TaskList[] = function (data): TaskList[] {
         let pivot = data[0];
         let length = data.length
@@ -70,6 +69,30 @@ export default function TasksLibrary(): JSX.Element {
         navigate('../create_task')
     }
 
+    const deleteTask = (id:string) => {
+
+        let config = {
+            method: 'DELETE',
+            url: 'https://todo.coldwinternight.ru/api/tasks/' + id,
+            headers: {
+                'Authorization': localStorage.jwt,
+            }
+        };
+
+        axios(config)
+            .then(res => {
+                let taskIndex = data.findIndex((task) => task.id === id);
+                let newData = data.slice(0, taskIndex).concat(data.slice(taskIndex + 1, data.length))
+                if(newData[0] === undefined) {
+                    setIsEmpty(true)
+                }
+                setData(newData);
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
+    
     return (
         <div className="TasksLibrary">
             {preloaderVisible && <img src={preloader} id="preloader" alt="preloader" />}
@@ -77,7 +100,7 @@ export default function TasksLibrary(): JSX.Element {
                 <FontAwesomeIcon className='add_icon' icon={faCirclePlus} onClick={() => { createNewTask() }}></FontAwesomeIcon>
                 <div className="tasks_list">
                     {data.map((task) => {
-                        return <Task key={task.id} id={task.id} title={task.title} description={task.taskBody} completed={task.completed} today={task.today} renderedIn='library' />
+                        return <Task key={task.id} id={task.id} title={task.title} description={task.taskBody} completed={task.completed} today={task.today} renderedIn='library' deleteTask={deleteTask}/>
                     })}
                 </div>
                 <div className="safe_container"></div>

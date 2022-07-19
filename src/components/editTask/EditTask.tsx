@@ -2,12 +2,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircleArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { createRef, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 
 interface EditTask {
     id:string,
     title:string,
     description:string,
     setEdit: (params: boolean) => any;
+    setTitle: (params:string) => void,
+    setBody: (params:string) => void
 }
 
 export default function EditTask(props: EditTask): JSX.Element {
@@ -37,7 +40,33 @@ export default function EditTask(props: EditTask): JSX.Element {
 
     const submitChanges = (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault();
-        props.setEdit(false);
+
+        let data = {
+            title: taskName,
+            task_body: description
+        };
+
+        let config = {
+            method: 'PATCH',
+            url: "https://todo.coldwinternight.ru/api/tasks/" + props.id + "/titleAndBody",
+            headers: {
+                'Authorization': localStorage.jwt,
+            },
+            data
+        };
+        
+        axios(config)
+        .then(res => {
+            console.log(res);
+            props.setTitle(taskName);
+            props.setBody(description);
+            backward()
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+
     };
 
     const backward = () => {

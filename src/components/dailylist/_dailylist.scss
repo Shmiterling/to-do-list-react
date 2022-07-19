@@ -34,9 +34,10 @@
         
     }
     button {
+        @include button_settings;
         display: block;
         margin: 0 auto;
         margin-top:50px;
-        @include button_settings;
+        margin-bottom: 75px;
     }
 }
