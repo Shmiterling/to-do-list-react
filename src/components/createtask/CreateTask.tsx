@@ -9,6 +9,8 @@ export default function CreateTask(): JSX.Element {
     const _taskName = createRef<HTMLInputElement>()
     const _taskBody = createRef<HTMLTextAreaElement>()
     const [today, setToday] = useState<boolean>(false)
+    const [titleCharacter, setTitleCharacter] = useState<number>(20)
+    const [bodyCharacter, setBodyCharacter] = useState<number>(200)
 
     const navigate = useNavigate()
 
@@ -62,20 +64,31 @@ export default function CreateTask(): JSX.Element {
         setToday(!today)
     }
 
+    const titleCount = () => {
+        if(_taskName.current !== null) {
+            setTitleCharacter(20 - Number(_taskName.current.value.length))
+        }
+    }
+
+    const bodyCount = () => {
+        if(_taskBody.current !== null) {
+            setBodyCharacter(200 - Number(_taskBody.current.value.length))
+        }
+    }
+
     return (
         <div className="CreateTask">
             <FontAwesomeIcon icon={faCircleArrowLeft} className="back" onClick={() => backward()}></FontAwesomeIcon>
             <form>
-                <label htmlFor="task_name">Task Name <span className="add_info">maximum 20 characters</span></label>
-                <input ref={_taskName} id="task_name" type="text" />
+                <label htmlFor="task_name">Task Name <span className="add_info">maximum {titleCharacter.toString()} characters</span></label>
+                <input ref={_taskName} id="task_name" type="text" maxLength={20} onChange={() => titleCount()}/>
 
-                <label htmlFor="description">Task Description <span className="add_info">maximum 200 characters</span></label>
-                <textarea ref={_taskBody} id="description" />
+                <label htmlFor="description">Task Description <span className="add_info">maximum {bodyCharacter.toString()} characters</span></label>
+                <textarea ref={_taskBody} id="description" maxLength={200} onChange={() => bodyCount()}/>
                 
                 <div className="checkbox_container">
                     <span className={(today === true ? 'checkbox selected' : 'checkbox')} onClick={() => addToDaily()}></span>
                     <label htmlFor="today_checkbox" id="today_label">Add to Daily List</label>
-
                 </div>
 
                 <button type="submit" onClick={(e) => createTask(e)}>Create</button>

@@ -56,6 +56,7 @@
             resize: none;
             outline: none;
             @include font_settings;
+            border: 1px solid $secondary_grey;
         }
 
         input:focus {

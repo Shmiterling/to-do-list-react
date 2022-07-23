@@ -117,7 +117,7 @@ export default function Task(props: TaskProps): JSX.Element {
                 <p>{body}</p>
             </div>}
 
-            {edit && <EditTask id={props.id} title={props.title} description={props.description} setEdit={setEdit} setTitle={setTitle} setBody={setBody}/>}
+            {edit && <EditTask id={props.id} title={title} description={body} setEdit={setEdit} setTitle={setTitle} setBody={setBody} setIsEmpty={setIsEmpty}/>}
         </div>
     )
 }
